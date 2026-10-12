@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tra Cứu Giá Panasonic - Quốc Hùng 10/2026</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .ios-shadow { box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased pb-24">
+
+    <!-- Header Cố định -->
+    <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200 px-4 py-3">
+        <div class="max-w-md mx-auto">
+            <div class="flex items-center justify-between mb-2">
+                <div>
+                    <h1 class="text-base font-bold text-slate-900 leading-tight">Tra Cứu Giá Panasonic</h1>
+                    <p class="text-xs text-slate-500">Quốc Hùng Cần Thơ (10/2026)</p>
+                </div>
+                <button onclick="openExportModal()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1.5 rounded-lg font-medium transition">
+                    ⚙️ Dữ liệu
+                </button>
+            </div>
+
+            <!-- Ô tìm kiếm -->
+            <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+                    🔍
+                </span>
+                <input type="text" id="searchInput" placeholder="Tìm tên thiết bị, mã sản phẩm..." 
+                    class="w-full pl-9 pr-4 py-2.5 bg-slate-100 border-none rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white transition outline-none">
+            </div>
+
+            <!-- Bộ lọc Danh mục & Trạng thái -->
+            <div class="flex gap-2 mt-2.5 overflow-x-auto pb-1 no-scrollbar text-xs" id="categoryFilters">
+                <button onclick="filterCategory('ALL')" class="cat-btn bg-blue-600 text-white px-3 py-1.5 rounded-full font-medium whitespace-nowrap transition">Tất cả</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Nội dung danh sách sản phẩm -->
+    <main class="max-w-md mx-auto px-4 pt-3">
+        <div class="flex justify-between items-center mb-2 px-1">
+            <span class="text-xs text-slate-500 font-medium" id="resultCount">Đang tải sản phẩm...</span>
+            <div class="flex gap-2 text-xs">
+                <select id="statusFilter" onchange="filterProducts()" class="bg-white border border-slate-200 text-slate-600 rounded-lg px-2 py-1 text-xs outline-none">
+                    <option value="ALL">Tất cả trạng thái</option>
+                    <option value="in_stock">🟢 Còn hàng</option>
+                    <option value="out_of_stock">🔴 Hết hàng</option>
+                    <option value="discontinued">⚫ Ngưng kinh doanh</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="productList" class="space-y-3">
+            <!-- Sản phẩm được render bằng JS -->
+        </div>
+    </main>
+
+    <!-- Modal Chỉnh sửa Giá / Trạng thái -->
+    <div id="editModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-end sm:items-center justify-center sm:p-4 hidden">
+        <div class="bg-white w-full sm:max-w-md rounded-t-3xl sm:rounded-2xl p-5 ios-shadow animate-slide-up">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold text-slate-900" id="editModalTitle">Cập nhật sản phẩm</h3>
+                <button onclick="closeEditModal()" class="text-slate-400 hover:text-slate-600 text-lg font-bold px-2">✕</button>
+            </div>
+            <input type="hidden" id="editProductId">
+            <div class="space-y-3 text-sm">
+                <div>
+                    <label class="block text-xs font-medium text-slate-500 mb-1">Tên sản phẩm</label>
+                    <input type="text" id="editName" class="w-full bg-slate-100 border rounded-xl px-3 py-2 text-slate-800 font-medium" readonly>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-500 mb-1">Giá Bán Lẻ Đề Xuất (VNĐ)</label>
+                    <input type="number" id="editRetailPrice" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none font-bold text-blue-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-500 mb-1">Giá Nhập Có VAT (VNĐ)</label>
+                    <input type="number" id="editImportPrice" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-500 mb-1">Trạng thái sản phẩm</label>
+                    <select id="editStatus" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 outline-none">
+                        <option value="in_stock">🟢 Còn hàng</option>
+                        <option value="out_of_stock">🔴 Hết hàng</option>
+                        <option value="discontinued">⚫ Ngưng kinh doanh</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex gap-3 mt-5">
+                <button onclick="closeEditModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-2.5 rounded-xl font-medium transition">Hủy</button>
+                <button onclick="saveProductEdit()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-xl font-medium transition">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Quản lý dữ liệu -->
+    <div id="dataModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+        <div class="bg-white w-full max-w-md rounded-2xl p-5 ios-shadow">
+            <h3 class="font-bold text-slate-900 mb-3">Quản lý dữ liệu ứng dụng</h3>
+            <p class="text-xs text-slate-500 mb-4">Bạn có thể khôi phục lại giá gốc ban đầu hoặc xóa dữ liệu tùy chỉnh.</p>
+            <div class="space-y-2.5">
+                <button onclick="resetToDefaultData()" class="w-full bg-amber-50 hover:bg-amber-100 text-amber-700 py-2.5 rounded-xl font-medium text-sm transition">
+                    🔄 Khôi phục giá gốc mặc định
+                </button>
+                <button onclick="closeExportModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-2.5 rounded-xl font-medium text-sm transition">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dữ liệu gốc chuẩn 121 sản phẩm từ Quôc Hùng 10/2026
+        const defaultProducts = [
+            { id: 1, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Ổ có che full", listPrice: 34000, importPrice: 16603, retailPrice: 20000, status: "in_stock" },
+            { id: 2, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Mặt 1,2,3 full", listPrice: 18100, importPrice: 9136, retailPrice: 11000, status: "in_stock" },
+            { id: 3, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Công tắc full", listPrice: 14700, importPrice: 9481, retailPrice: 11000, status: "in_stock" },
+            { id: 4, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "C.tắc cầu thang full", listPrice: 39500, importPrice: 25726, retailPrice: 31000, status: "in_stock" },
+            { id: 5, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Ổ tivi full", listPrice: 71500, importPrice: 46568, retailPrice: 56000, status: "in_stock" },
+            { id: 6, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Ổ mạng full", listPrice: 192000, importPrice: 125050, retailPrice: 150000, status: "in_stock" },
+            { id: 7, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Dimmer đèn, quạt full", listPrice: 63500, importPrice: 40951, retailPrice: 49000, status: "in_stock" },
+            { id: 8, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Mặt CB full", listPrice: 18100, importPrice: 11789, retailPrice: 14000, status: "in_stock" },
+            { id: 9, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Mặt bít đơn full", listPrice: 20000, importPrice: 12898, retailPrice: 15000, status: "in_stock" },
+            { id: 10, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Mặt bít đôi full", listPrice: 38000, importPrice: 24506, retailPrice: 29000, status: "in_stock" },
+            { id: 11, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Cầu chì full", listPrice: 18500, importPrice: 11931, retailPrice: 14000, status: "in_stock" },
+            { id: 12, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Mặt 4,6 full", listPrice: 36000, importPrice: 23218, retailPrice: 28000, status: "in_stock" },
+            { id: 13, category: "PANASONIC WIDE SERIES", name: "Mặt 1,2,3 wide", listPrice: 20000, importPrice: 12338, retailPrice: 15000, status: "in_stock" },
+            { id: 14, category: "PANASONIC WIDE SERIES", name: "Ổ che wide", listPrice: 45800, importPrice: 28575, retailPrice: 34000, status: "in_stock" },
+            { id: 15, category: "PANASONIC WIDE SERIES", name: "Công tắc wide", listPrice: 24600, importPrice: 15692, retailPrice: 19000, status: "in_stock" },
+            { id: 16, category: "PANASONIC WIDE SERIES", name: "C.tắc cầu thang wide", listPrice: 50500, importPrice: 32569, retailPrice: 39000, status: "in_stock" },
+            { id: 17, category: "PANASONIC WIDE SERIES", name: "Ổ tivi wide", listPrice: 96000, importPrice: 61912, retailPrice: 74000, status: "in_stock" },
+            { id: 18, category: "PANASONIC WIDE SERIES", name: "Ổ mạng wide", listPrice: 208000, importPrice: 134141, retailPrice: 160000, status: "in_stock" },
+            { id: 19, category: "PANASONIC WIDE SERIES", name: "Mặt CB wide", listPrice: 20000, importPrice: 12900, retailPrice: 15000, status: "in_stock" },
+            { id: 20, category: "PANASONIC WIDE SERIES", name: "Mặt 4,6 wide", listPrice: 38000, importPrice: 24508, retailPrice: 29000, status: "in_stock" },
+            { id: 21, category: "PANASONIC WIDE SERIES", name: "Đại nhựa", listPrice: 4000, importPrice: 2816, retailPrice: 3500, status: "in_stock" },
+            { id: 22, category: "PANASONIC WIDE SERIES", name: "Đại CB", listPrice: 9000, importPrice: 6156, retailPrice: 7500, status: "in_stock" },
+            { id: 23, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Tép đơn 110 ... 140", listPrice: 99000, importPrice: 63850, retailPrice: 77000, status: "in_stock" },
+            { id: 24, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Tép đơn 150 ... 163", listPrice: 233000, importPrice: 150273, retailPrice: 180000, status: "in_stock" },
+            { id: 25, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Tép đôi 210 ... 240", listPrice: 284000, importPrice: 183166, retailPrice: 220000, status: "in_stock" },
+            { id: 26, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Tép đôi 250 ... 263", listPrice: 469000, importPrice: 302482, retailPrice: 365000, status: "in_stock" },
+            { id: 27, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Ch.giật tép 232, 240", listPrice: 72000, importPrice: 462096, retailPrice: 555000, status: "in_stock" },
+            { id: 28, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Ch.giật tép 263", listPrice: 1021000, importPrice: 655278, retailPrice: 785000, status: "in_stock" },
+            { id: 29, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "CB Na 10,15,20,30,40", listPrice: 91000, importPrice: 57412, retailPrice: 69000, status: "in_stock" },
+            { id: 30, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Ch.giật cóc", listPrice: 396000, importPrice: 249836, retailPrice: 300000, status: "in_stock" },
+            { id: 31, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Ch.giật 2 nút", listPrice: 972000, importPrice: 613235, retailPrice: 735000, status: "in_stock" },
+            { id: 32, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Ch.giật 1 nút", listPrice: 827000, importPrice: 521754, retailPrice: 625000, status: "in_stock" },
+            { id: 33, category: "BĂNG KEO NANOCO", name: "Băng Keo 10Y Đài Loan", listPrice: 9400, importPrice: 5656, retailPrice: 7000, status: "in_stock" },
+            { id: 34, category: "BĂNG KEO NANOCO", name: "Băng Keo 20Y Đài Loan", listPrice: 16400, importPrice: 9773, retailPrice: 12000, status: "in_stock" },
+            { id: 35, category: "BĂNG KEO NANOCO", name: "Băng Keo 20Y Trung Quốc", listPrice: 12000, importPrice: 7645, retailPrice: 9000, status: "in_stock" },
+            { id: 36, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Chup CB Cóc", listPrice: 8000, importPrice: 5472, retailPrice: 6500, status: "in_stock" },
+            { id: 37, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Chup CB 2 tép", listPrice: 18000, importPrice: 12312, retailPrice: 15000, status: "in_stock" },
+            { id: 38, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Nổi đơn", listPrice: 10500, importPrice: 7182, retailPrice: 8500, status: "in_stock" },
+            { id: 39, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Nổi đôi", listPrice: 16000, importPrice: 10944, retailPrice: 13000, status: "in_stock" },
+            { id: 40, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Âm đơn", listPrice: 6200, importPrice: 3571, retailPrice: 4500, status: "in_stock" },
+            { id: 41, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Âm đôi", listPrice: 10500, importPrice: 7182, retailPrice: 8500, status: "in_stock" },
+            { id: 42, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Hộp Nổi 100*100", listPrice: 22000, importPrice: 15048, retailPrice: 18000, status: "in_stock" },
+            { id: 43, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Hộp Nổi 120*120", listPrice: 27000, importPrice: 18468, retailPrice: 22000, status: "in_stock" },
+            { id: 44, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Hộp Nổi 150*150", listPrice: 39000, importPrice: 26676, retailPrice: 32000, status: "in_stock" },
+            { id: 45, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Hộp Nổi 200*200", listPrice: 68000, importPrice: 46512, retailPrice: 56000, status: "in_stock" },
+            { id: 46, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Tủ nhựa 2,4 mặt nhựa", listPrice: 99000, importPrice: 63687, retailPrice: 76000, status: "in_stock" },
+            { id: 47, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Tủ nhựa 8 mặt nhựa", listPrice: 155000, importPrice: 99712, retailPrice: 120000, status: "in_stock" },
+            { id: 48, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Tủ sắt 10", listPrice: 270000, importPrice: 173691, retailPrice: 210000, status: "in_stock" },
+            { id: 49, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Tủ sắt 14", listPrice: 330000, importPrice: 212289, retailPrice: 255000, status: "in_stock" },
+            { id: 50, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Tủ sắt 2-4 mặt nhựa", listPrice: 115000, importPrice: 73980, retailPrice: 89000, status: "in_stock" },
+            { id: 51, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Tủ sắt 4-8 mặt nhựa", listPrice: 176000, importPrice: 113221, retailPrice: 135000, status: "in_stock" },
+            { id: 52, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt trần F600 3 cánh", listPrice: 1700000, importPrice: 1096330, retailPrice: 1320000, status: "in_stock" },
+            { id: 53, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt trần F60-FV2 3 cánh", listPrice: 2020000, importPrice: 1272600, retailPrice: 1530000, status: "in_stock" },
+            { id: 54, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt trần 4 cánh F56XPG", listPrice: 4020000, importPrice: 2536218, retailPrice: 3040000, status: "in_stock" },
+            { id: 55, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt trần 4 cánh F56MPG", listPrice: 3640000, importPrice: 2296476, retailPrice: 2760000, status: "in_stock" },
+            { id: 56, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt trần 5 cánh F-60GDS", listPrice: 7160000, importPrice: 4517244, retailPrice: 5420000, status: "in_stock" },
+            { id: 57, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt bàn B4", listPrice: 1580000, importPrice: 963642, retailPrice: 1160000, status: "in_stock" },
+            { id: 58, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt treo remost F409M", listPrice: 2930000, importPrice: 1787007, retailPrice: 2140000, status: "in_stock" },
+            { id: 59, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt Đứng F409K", listPrice: 4130000, importPrice: 2518887, retailPrice: 3020000, status: "in_stock" },
+            { id: 60, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà trắng 16", listPrice: 170000, importPrice: 91035, retailPrice: 110000, status: "in_stock" },
+            { id: 61, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà trắng 20", listPrice: 245000, importPrice: 131198, retailPrice: 155000, status: "in_stock" },
+            { id: 62, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà trắng 25", listPrice: 255000, importPrice: 136553, retailPrice: 165000, status: "in_stock" },
+            { id: 63, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà trắng 32", listPrice: 299000, importPrice: 160115, retailPrice: 190000, status: "in_stock" },
+            { id: 64, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà Đen 16 PE2", listPrice: 153000, importPrice: 66249, retailPrice: 79000, status: "in_stock" },
+            { id: 65, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà Đen 20 PE2", listPrice: 220000, importPrice: 95260, retailPrice: 115000, status: "in_stock" },
+            { id: 66, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà Đen 25 PE2", listPrice: 229000, importPrice: 99157, retailPrice: 120000, status: "in_stock" },
+            { id: 67, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "Ống cứng 16 (750N)", listPrice: 25000, importPrice: 15323, retailPrice: 18000, status: "in_stock" },
+            { id: 68, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "Ống cứng 20 (750N)", listPrice: 33000, importPrice: 20226, retailPrice: 24000, status: "in_stock" },
+            { id: 69, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "Ống cứng 25 (750N)", listPrice: 48000, importPrice: 29419, retailPrice: 35000, status: "in_stock" },
+            { id: 70, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "Ống cứng 32 (750N)", listPrice: 74000, importPrice: 45355, retailPrice: 54000, status: "in_stock" },
+            { id: 71, category: "NẸP VUÔNG NANO", name: "Nẹp Vuông Nano 2F", listPrice: 11400, importPrice: 6919, retailPrice: 8500, status: "in_stock" },
+            { id: 72, category: "NẸP VUÔNG NANO", name: "Nẹp Vuông Nano 2F5", listPrice: 17400, importPrice: 10560, retailPrice: 13000, status: "in_stock" },
+            { id: 73, category: "NẸP VUÔNG NANO", name: "Nẹp Vuông Nano 3F", listPrice: 21000, importPrice: 12745, retailPrice: 15000, status: "in_stock" },
+            { id: 74, category: "NẸP VUÔNG NANO", name: "Nẹp Vuông Nano 4F", listPrice: 32600, importPrice: 19785, retailPrice: 24000, status: "in_stock" },
+            { id: 75, category: "NẸP VUÔNG NANO", name: "Nẹp Vuông Nano 5F", listPrice: 70000, importPrice: 42483, retailPrice: 51000, status: "in_stock" },
+            { id: 76, category: "MÁY NƯỚC NÓNG PANASONIC", name: "DH-3VS1VW (khg bơm)", listPrice: 3220000, importPrice: 2144520, retailPrice: 2570000, status: "in_stock" },
+            { id: 77, category: "MÁY NƯỚC NÓNG PANASONIC", name: "DH-4VS1VW (không Bơm 4,5K)", listPrice: 3520000, importPrice: 2344320, retailPrice: 2810000, status: "in_stock" },
+            { id: 78, category: "MÁY NƯỚC NÓNG PANASONIC", name: "DH-3VP1VW (có Bơm)", listPrice: 5210000, importPrice: 3469860, retailPrice: 4160000, status: "in_stock" },
+            { id: 79, category: "MÁY NƯỚC NÓNG PANASONIC", name: "DH-4VP1VW (có bơm 4,5K)", listPrice: 5430000, importPrice: 3616380, retailPrice: 4340000, status: "in_stock" },
+            { id: 80, category: "BƠM NƯỚC PANA & NANOCO", name: "Bơm 129", listPrice: 1780000, importPrice: 1044504, retailPrice: 1250000, status: "in_stock" },
+            { id: 81, category: "BƠM NƯỚC PANA & NANOCO", name: "Bơm 200 (GP-201JXK-SV5) Mới", listPrice: 2300000, importPrice: 1342970, retailPrice: 1610000, status: "in_stock" },
+            { id: 82, category: "BƠM NƯỚC PANA & NANOCO", name: "Bơm A130", listPrice: 2480000, importPrice: 1396736, retailPrice: 1680000, status: "in_stock" },
+            { id: 83, category: "BƠM NƯỚC PANA & NANOCO", name: "Bơm A200", listPrice: 2970000, importPrice: 1681911, retailPrice: 2020000, status: "in_stock" },
+            { id: 84, category: "BƠM NƯỚC PANA & NANOCO", name: "Bơm 250", listPrice: 3840000, importPrice: 2207232, retailPrice: 2650000, status: "in_stock" },
+            { id: 85, category: "BƠM NƯỚC PANA & NANOCO", name: "NSP128-A (Nanoco)", listPrice: 2450000, importPrice: 1447705, retailPrice: 1740000, status: "in_stock" },
+            { id: 86, category: "BƠM NƯỚC PANA & NANOCO", name: "NSP200-A (Nanoco)", listPrice: 2670000, importPrice: 1577703, retailPrice: 1890000, status: "in_stock" },
+            { id: 87, category: "BƠM NƯỚC PANA & NANOCO", name: "NSP300-A (Nanoco)", listPrice: 2760000, importPrice: 1630884, retailPrice: 1960000, status: "in_stock" },
+            { id: 88, category: "BƠM NƯỚC PANA & NANOCO", name: "NSP400-A (Nanoco)", listPrice: 2860000, importPrice: 1689974, retailPrice: 2030000, status: "in_stock" },
+            { id: 89, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 15TGU1", listPrice: 870000, importPrice: 541923, retailPrice: 650000, status: "in_stock" },
+            { id: 90, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 20TGU", listPrice: 980000, importPrice: 610442, retailPrice: 735000, status: "in_stock" },
+            { id: 91, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 25TGU", listPrice: 1090000, importPrice: 678961, retailPrice: 815000, status: "in_stock" },
+            { id: 92, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 15AUL", listPrice: 1080001, importPrice: 672733, retailPrice: 805000, status: "in_stock" },
+            { id: 93, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 20AL", listPrice: 1100000, importPrice: 685190, retailPrice: 820000, status: "in_stock" },
+            { id: 94, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 25AL", listPrice: 1210000, importPrice: 753709, retailPrice: 905000, status: "in_stock" },
+            { id: 95, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 20AU9 (khg Lưới)", listPrice: 880000, importPrice: 548152, retailPrice: 660000, status: "in_stock" },
+            { id: 96, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 25AU9 (không Lưới)", listPrice: 1000000, importPrice: 622900, retailPrice: 745000, status: "in_stock" },
+            { id: 97, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Quạt hút siêu mỏng NMV1523", listPrice: 375000, importPrice: 196463, retailPrice: 235000, status: "in_stock" },
+            { id: 98, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Quạt hút siêu mỏng NMV2023", listPrice: 420000, importPrice: 220038, retailPrice: 265000, status: "in_stock" },
+            { id: 99, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Quạt hút siêu mỏng NMV2523", listPrice: 490000, importPrice: 256711, retailPrice: 310000, status: "in_stock" },
+            { id: 100, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Tường NANO NWV1520", listPrice: 610000, importPrice: 319579, retailPrice: 385000, status: "in_stock" },
+            { id: 101, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Tường NANO NWV2020", listPrice: 680000, importPrice: 356252, retailPrice: 430000, status: "in_stock" },
+            { id: 102, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Tường NANO NWV2520", listPrice: 770000, importPrice: 403403, retailPrice: 485000, status: "in_stock" },
+            { id: 103, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Trần NANO NCV1520", listPrice: 530000, importPrice: 277667, retailPrice: 335000, status: "in_stock" },
+            { id: 104, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Trần NANO NCV2020", listPrice: 580000, importPrice: 303862, retailPrice: 365000, status: "in_stock" },
+            { id: 105, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Trần Có ống NCV1520-C", listPrice: 560000, importPrice: 293384, retailPrice: 350000, status: "in_stock" },
+            { id: 106, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Trần Có ống NCV2020-C", listPrice: 620000, importPrice: 324818, retailPrice: 390000, status: "in_stock" },
+            { id: 107, category: "THIẾT BỊ KHÁC", name: "Phích cắm tròn", listPrice: 7500, importPrice: 4450, retailPrice: 5500, status: "in_stock" },
+            { id: 108, category: "THIẾT BỊ KHÁC", name: "Phích Nối âm", listPrice: 13000, importPrice: 7713, retailPrice: 9500, status: "in_stock" },
+            { id: 109, category: "THIẾT BỊ KHÁC", name: "Bút Thử Điện Màu cam", listPrice: 19500, importPrice: 11681, retailPrice: 14000, status: "in_stock" },
+            { id: 110, category: "THIẾT BỊ KHÁC", name: "Bút Thử Điện Màu đỏ", listPrice: 19500, importPrice: 11681, retailPrice: 14000, status: "in_stock" },
+            { id: 111, category: "THIẾT BỊ KHÁC", name: "Vợt Muỗi Xanh - Hồng NMR101", listPrice: 120000, importPrice: 81480, retailPrice: 98000, status: "in_stock" },
+            { id: 112, category: "THIẾT BỊ KHÁC", name: "Vợt Muỗi Xanh Dương NMR102", listPrice: 135000, importPrice: 91665, retailPrice: 110000, status: "in_stock" },
+            { id: 113, category: "THIẾT BỊ KHÁC", name: "Vợt Muỗi thông minh NMR103", listPrice: 220000, importPrice: 149380, retailPrice: 180000, status: "in_stock" },
+            { id: 114, category: "THIẾT BỊ KHÁC", name: "Chuông không dây ND156", listPrice: 340000, importPrice: 211786, retailPrice: 255000, status: "in_stock" },
+            { id: 115, category: "THIẾT BỊ KHÁC", name: "Chuông không dây ND157", listPrice: 340000, importPrice: 211786, retailPrice: 255000, status: "in_stock" },
+            { id: 116, category: "THIẾT BỊ KHÁC", name: "Chuông cảm ứng NJX378", listPrice: 330000, importPrice: 205557, retailPrice: 245000, status: "in_stock" },
+            { id: 117, category: "THIẾT BỊ KHÁC", name: "Chuông cảm ứng NJX379-156", listPrice: 550000, importPrice: 342595, retailPrice: 410000, status: "in_stock" },
+            { id: 118, category: "THIẾT BỊ KHÁC", name: "NC5E-U10 Cáp Mạng 5, 10% đồng", listPrice: 880000, importPrice: 601920, retailPrice: 720000, status: "in_stock" },
+            { id: 119, category: "THIẾT BỊ KHÁC", name: "NC5E-F100 Cáp mạng 5, 100% Đồng", listPrice: 4050000, importPrice: 2720385, retailPrice: 3260000, status: "in_stock" },
+            { id: 120, category: "THIẾT BỊ KHÁC", name: "NC6-U10 Cáp mạng 6, 10% Đồng", listPrice: 1145000, importPrice: 776654, retailPrice: 930000, status: "in_stock" },
+            { id: 121, category: "THIẾT BỊ KHÁC", name: "NC6-F100 Cáp Mạng 6, 100% đồng", listPrice: 5240000, importPrice: 3519708, retailPrice: 4220000, status: "in_stock" }
+        ];
+
+        let products = [];
+        let currentCategory = 'ALL';
+
+        // Khởi tạo dữ liệu từ LocalStorage hoặc mặc định
+        function initData() {
+            const saved = localStorage.getItem('panasonic_prices_2026');
+            if (saved) {
+                try {
+                    products = JSON.parse(saved);
+                } catch (e) {
+                    products = defaultProducts;
+                }
+            } else {
+                products = defaultProducts;
+                saveData();
+            }
+            renderCategories();
+            filterProducts();
+        }
+
+        function saveData() {
+            localStorage.setItem('panasonic_prices_2026', JSON.stringify(products));
+        }
+
+        function formatMoney(amount) {
+            return new Intl.NumberFormat('vi-VN').format(amount) + ' đ';
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('categoryFilters');
+            const categories = ['ALL', ...new Set(defaultProducts.map(p => p.category))];
+            
+            container.innerHTML = categories.map(cat => `
+                <button onclick="setCategory('${cat}')" class="cat-btn px-3 py-1.5 rounded-full font-medium whitespace-nowrap transition ${currentCategory === cat ? 'bg-blue-600 text-white shadow-sm' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}">
+                    ${cat === 'ALL' ? 'Tất cả' : cat}
+                </button>
+            `).join('');
+        }
+
+        function setCategory(cat) {
+            currentCategory = cat;
+            renderCategories();
+            filterProducts();
+        }
+
+        function filterProducts() {
+            const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
+            const statusFilter = document.getElementById('statusFilter').value;
+
+            const filtered = products.filter(p => {
+                const matchCat = currentCategory === 'ALL' || p.category === currentCategory;
+                const matchKey = p.name.toLowerCase().includes(keyword) || p.category.toLowerCase().includes(keyword);
+                const matchStatus = statusFilter === 'ALL' || p.status === statusFilter;
+                return matchCat && matchKey && matchStatus;
+            });
+
+            const listEl = document.getElementById('productList');
+            document.getElementById('resultCount').innerText = `Hiển thị ${filtered.length} sản phẩm`;
+
+            if (filtered.length === 0) {
+                listEl.innerHTML = `
+                    <div class="text-center py-12 bg-white rounded-2xl border border-slate-200 p-6">
+                        <p class="text-slate-400 text-sm">Không tìm thấy sản phẩm phù hợp.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            listEl.innerHTML = filtered.map(p => {
+                let statusBadge = '';
+                if (p.status === 'in_stock') statusBadge = '<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-emerald-50 text-emerald-700">🟢 Còn hàng</span>';
+                else if (p.status === 'out_of_stock') statusBadge = '<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-rose-50 text-rose-700">🔴 Hết hàng</span>';
+                else statusBadge = '<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-600">⚫ Ngưng KD</span>';
+
+                return `
+                    <div class="bg-white rounded-2xl p-4 border border-slate-200/80 ios-shadow flex flex-col justify-between gap-2 relative">
+                        <div class="flex justify-between items-start gap-2">
+                            <div>
+                                <span class="text-[10px] font-semibold text-blue-600 uppercase tracking-wide">${p.category}</span>
+                                <h3 class="font-semibold text-slate-900 text-sm mt-0.5 leading-snug">${p.name}</h3>
+                            </div>
+                            <div>${statusBadge}</div>
+                        </div>
+                        
+                        <div class="flex items-end justify-between mt-1 pt-2 border-t border-slate-100">
+                            <div>
+                                <div class="text-[10px] text-slate-400 font-medium">GIÁ BÁN LẺ ĐỀ XUẤT</div>
+                                <div class="text-lg font-bold text-blue-600 tracking-tight">${formatMoney(p.retailPrice)}</div>
+                                <div class="text-xs text-slate-400 font-normal">Giá nhập: <span class="text-slate-500 font-medium">${formatMoney(p.importPrice)}</span></div>
+                            </div>
+                            <button onclick="openEditModal(${p.id})" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95">
+                                ✏️ Sửa giá
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Tìm kiếm realtime
+        document.getElementById('searchInput').addEventListener('input', filterProducts);
+
+        // Modal chỉnh sửa
+        function openEditModal(id) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+
+            document.getElementById('editProductId').value = p.id;
+            document.getElementById('editName').value = p.name;
+            document.getElementById('editRetailPrice').value = p.retailPrice;
+            document.getElementById('editImportPrice').value = p.importPrice;
+            document.getElementById('editStatus').value = p.status || 'in_stock';
+
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').classList.add('hidden');
+        }
+
+        function saveProductEdit() {
+            const id = parseInt(document.getElementById('editProductId').value);
+            const newRetail = parseFloat(document.getElementById('editRetailPrice').value);
+            const newImport = parseFloat(document.getElementById('editImportPrice').value);
+            const newStatus = document.getElementById('editStatus').value;
+
+            const p = products.find(item => item.id === id);
+            if (p) {
+                p.retailPrice = isNaN(newRetail) ? p.retailPrice : newRetail;
+                p.importPrice = isNaN(newImport) ? p.importPrice : newImport;
+                p.status = newStatus;
+                saveData();
+                filterProducts();
+                closeEditModal();
+            }
+        }
+
+        // Modal dữ liệu
+        function openExportModal() {
+            document.getElementById('dataModal').classList.remove('hidden');
+        }
+
+        function closeExportModal() {
+            document.getElementById('dataModal').classList.add('hidden');
+        }
+
+        function resetToDefaultData() {
+            if (confirm("Bạn có chắc chắn muốn khôi phục lại toàn bộ giá gốc ban đầu?")) {
+                products = JSON.parse(JSON.stringify(defaultProducts));
+                saveData();
+                filterProducts();
+                closeExportModal();
+            }
+        }
+
+        // Khởi chạy khi tải trang
+        window.onload = initData;
+    </script>
+</body>
+</html>
