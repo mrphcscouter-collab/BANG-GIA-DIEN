@@ -1,403 +1,735 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Tra Cứu Giá Panasonic - Quốc Hùng 10/2026</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
-        .ios-shadow { box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08); }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Giá Panasonic">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#EDF0F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A0F1A" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAIw0lEQVR4nO3da3BU5R3H8f9z9pKLIQahSQYkITF1IDFVzESUS6kTWlowHbnE6ThoWi+dlnZKqEpbqkE7RRhtO0B1phRrRXTsmDdga2lAqgLWCxCGW7iYkEC5JE4JUBJz2T3n6QuUppF/TfI82X2ePb/PS2Y4ezbnu8+57NnniPTRJQRwJU68VwDMhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAhTiAFYz3CtgkOUStr3SrLCGnMulCh67VGXIYOYCFOICFOICFOICFOIAlfDjVZH623PNMT7zXoq/874TPXhTxXov/gZEDWIgDWIgDWIgDWIgDWIgDWIgDWIgDWIgDWIgDWIgDWH78bmXQcCcYwCcQB7AQB7AQB7AS9qcJmRnyK8WyKNcbN0bmZ8v0VEpPlUkh6uii9k5x4WNqahFHTorDJ8W2A87ps2bdZWOIRItjZLq8p8ybfZv7pTwprrTFL1UyagSNHyNnln7yjwdPiNpdzrqtgeZWVPJfiRNHTqb82V3u3MluUmjA/7coRxbluFWz3U27nFUbAu8fwd6WKDHiSE2iR+ZGF5S7yQPPojdH0KxSb1apV7PdeWx98Eyb30cR6z8ixWPltqd7fjxHtYzeKqZ6u1b13DXV07ZEO9kdR2WZu3V5zxdHSe1LTkuhtQsjv3kwGk6EsXWQLI7joTnu6u9HB3GE0X/3z3A3VEeuSh7ClzCZrXE8MT9afXc0Bi80udDbWB1JT43BSxnHyjgW3OFW3enG7OVKr/c2VvekJsXsBU1hXxzlE71llbEYM3q7uUA+VxUR9v21lFj2dvOy5e9+GHHicY45q9T7xfxYRxlfNsURDNAfqiJpKXFbge9+I3b7MhPYFMfDc92SAv1nrcCxJo4xX5CLZvtrVI87a+JY/u2oxmug0B92XP+bcJ0sn6jzYva7h51NO51dH4qG0+JCh3A9SkuhnExZnOuV3eTNvMVDiGRLHIvu1LZD2bLHWbo+ePBE3xOec+10rl3sPRZ46c3ANcPkj77p/qDc9fO1c7Jit5KfLctv1TBsdEdo4ZrgvGWhz5bRR9tF8fjLwdt/Gvb57R0WxFE53VW/sNETpflPh17YEuj/fznQLL7289CHp/3bh+lxCEEVUzQMGw+vDW6uG/CbbT0v5i0LWfRLE71Mj2NyoTd6pOq1jT+/76zbOoAxo7fmVvHQcz49OjU9jjtuUR02uiK0+HmlA8ua7c479ab/oYaC6e95WrFqHOu3BtRvLl9RM8iBx2pGx5GZIQtzVPcpv9+kYbtu2+8cPum7I1Oj47htvGoZdQ3i6Ck9G/VPb/tu8DA6jhtyVfcptXXatmjtbqP/VkPB6DdclKs6cry1T9u+oP6EaD3vrz2L0XEUjlGKw/Vob5PON7inEXGYQQhSvMLRcFp0Kk210tf+JsRhhhHDpOL3Xk26vxnx21ct5saRNVx1CSc+0h2H7gUaztw4RqSrHo1qf3zJOcOehzLUzI0jNay6hHPtOtajlzbdCzScuXEkKcfRpfVolIi6ejBymCE5pLpb6dF9P3J3RPMCDWduHAa64lRBCczcOLoiqptC+x2gfrul1Nw4upWf36h+1NJHcthfP6kyN45O5TiGp+lYj6FcoOHMjUP9KsVI5SslfVwzDCOHGVraVJeQk6l5W47VvUDDmRvH2YtC8Vw0L0t3HLoXaDhz45CSTv1Lac9SMEqmaD0mLc5DHMao/6dSHAGHbszX+QvbCdchDmPUH1c9Jp1WrG1zFubIrAzEYYz9x1VX7+sl2ubimVHiuzlrjY7jvUOqI8fNBfL60Xo+7t+a5q85n8jwOFrPi0Nqhx2kaSKvLxd746711z6FDI+DiN7ap7qG95S5o0aobtefVPhu2CDz43h9p+oaJofoqfuULpjMm+JNKfTdAQeZH8c7BzU8Rql8ondv2SA/+mOz5K8f9Nl9HJ8yPQ5PUs0ODSv5qweiX50w4E9/VoasWRLJuEr99a1kehxEtO6NgKd8LJgUopcXRyqnD2D8KMqVtb+M6DrZsZEFcTSeEa9/oGE9k0K0+nvRmiWRos/75f7wNFp6d/TNFT152f4tg2x5XHlJgfz7CuX7O3r5xyFn005n51HR2PLpVJPJlJMpi8d6ZTd5M0s9vV/KXGbX48rtuPFtd4P4yweO+iw/l00a700a78cTkAGxYLdyyZIXgl0+PWmIG2viOP6RWL3Rd9OnxJc1cRDRUzVBv02CEF82xRFx6f6VoY6uuK3A2r/5a+iyKQ4iajwjFjwbkvE4wazd7Ty23o7jd10si4OINrzrVMd8Ix1oFvetDEmfnd/YFwcRrX4t8NvXYjfC72sS5U+E2jtj9oKmsDIOInr0xeDyV2MxftQ1iPLHw20+m5njElvjIKIVrwaq1gS1/5S+t5rtzsyl4fP2XNPUy+I4iOiPWwLTl4Qbz+j/WHdHaPHzwQdWhfROOWcXu+Mgor3HxNRHwis3BDROnrG5zrl1UXjNX/114vpZ1sdBRB1dtPSlYOnC8Ctvqyay46BT8WSo4snQsRY/HmT0Yce3sv03Ml3eO92bM8m9IVf2f66VYy1ic53z4huBz33Cl68kWhyXZWXI22/0inLluGtlXra8OpWGpchwiDq76WKn+PfH1Nwqjp4SR06KHfVOE8aJK0nYOEBdIhxzwBBBHMBCHMBCHMBCHMBCHMBCHMBCHMBKtPve8rPlnmd0/vzp/3vvsDPj0YR9mDlGDmAhDmAhDmAhDmAhDmAhDmAhDmAhDmAhDmAhDmDhHlJgYeQAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIA1n8A/D87JofqQ10AAAAASUVORK5CYII=">
+<title>Tra cứu giá Panasonic</title>
+<style>
+:root{
+  --bg:#EDF0F4; --bg-glass:rgba(237,240,244,.88);
+  --card:#fff; --sheet:#fff; --field:#EDF0F4;
+  --ink:#0E1B33; --muted:#5F6B7E; --faint:#8791A3;
+  --line:rgba(14,27,51,.10); --line-strong:rgba(14,27,51,.22);
+  --accent:#FFC72C; --on-accent:#0E1B33;
+  --primary:#0E1B33; --on-primary:#fff;
+  --in:#0F7B4F; --in-bg:rgba(15,123,79,.12);
+  --out:#C2410C; --out-bg:rgba(194,65,12,.12);
+  --stop:#5F6B7E; --stop-bg:rgba(95,107,126,.16);
+  --shadow:0 1px 2px rgba(14,27,51,.05);
+  --focus:#2563EB;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0A0F1A; --bg-glass:rgba(10,15,26,.88);
+    --card:#141B2B; --sheet:#141B2B; --field:#1E2740;
+    --ink:#F2F5FA; --muted:#9AA6BA; --faint:#6F7A8E;
+    --line:rgba(255,255,255,.09); --line-strong:rgba(255,255,255,.25);
+    --primary:#FFC72C; --on-primary:#0E1B33;
+    --in:#4ADE9A; --in-bg:rgba(74,222,154,.14);
+    --out:#FB9B6B; --out-bg:rgba(251,155,107,.15);
+    --stop:#9AA6BA; --stop-bg:rgba(154,166,186,.16);
+    --shadow:none; --focus:#6EA8FF;
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+html.lock,html.lock body{overflow:hidden}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.35 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:calc(110px + env(safe-area-inset-bottom));
+}
+#app{max-width:640px;margin:0 auto}
+button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:pointer;-webkit-appearance:none;appearance:none}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+/* ---------- Đầu trang ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:calc(14px + env(safe-area-inset-top)) 16px 8px}
+.top h1{margin:0;font-size:25px;line-height:1.1;font-weight:800;letter-spacing:-.025em}
+.top p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.actions{display:flex;gap:8px;flex:none}
+.icon-btn{width:46px;height:46px;border-radius:50%;background:var(--card);box-shadow:var(--shadow);
+  display:grid;place-items:center;transition:background .15s}
+.icon-btn svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.eye-off{display:none}
+body.nocost .eye-on{display:none}
+body.nocost .eye-off{display:block}
+body.nocost #btnEye{background:var(--accent);color:var(--on-accent)}
+
+/* ---------- Thanh tìm kiếm + bộ lọc ---------- */
+.sticky{position:sticky;top:0;z-index:20;background:var(--bg-glass);
+  -webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);
+  padding:6px 0 4px;border-bottom:1px solid transparent}
+.search{position:relative;margin:0 16px 10px}
+.search input{width:100%;height:48px;border-radius:14px;border:2px solid transparent;background:var(--card);
+  box-shadow:var(--shadow);padding:0 46px 0 46px;font:inherit;font-size:17px;color:var(--ink);outline:none;
+  -webkit-appearance:none;appearance:none}
+.search input::placeholder{color:var(--faint)}
+.search input:focus{border-color:var(--primary)}
+input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{display:none}
+.search .ic{position:absolute;left:15px;top:14px;width:20px;height:20px;color:var(--muted);pointer-events:none;
+  stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.search .clr{position:absolute;right:4px;top:4px;width:40px;height:40px;display:grid;place-items:center;color:var(--muted)}
+.search .clr svg{width:20px;height:20px;fill:currentColor}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:0 16px 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;height:38px;padding:0 15px;border-radius:19px;background:var(--card);box-shadow:var(--shadow);
+  font-size:15px;font-weight:650;white-space:nowrap;display:inline-flex;align-items:center;gap:7px}
+.chip[aria-pressed=true]{background:var(--accent);color:var(--on-accent)}
+.chips.status .chip{height:34px;font-size:14px;padding:0 12px;border-radius:17px}
+.chips.status .chip[aria-pressed=true]{background:var(--primary);color:var(--on-primary)}
+.chip .n{font-weight:600;opacity:.6;font-variant-numeric:tabular-nums}
+.chip i{width:9px;height:9px;border-radius:50%;flex:none}
+.d-in{background:var(--in)} .d-out{background:var(--out)} .d-stop{background:var(--stop)}
+
+/* ---------- Danh sách ---------- */
+.info{margin:10px 20px 0;font-size:13px;color:var(--muted);min-height:18px}
+#list{padding:0 16px}
+.group h2{display:flex;align-items:baseline;gap:8px;margin:22px 4px 10px;font-size:19px;font-weight:800;letter-spacing:-.015em}
+.group h2 span{font-size:14px;font-weight:600;color:var(--muted)}
+.rows{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.row{padding:14px 16px 13px;cursor:pointer;position:relative;transition:background .12s}
+.row+.row{border-top:1px solid var(--line)}
+.row:active{background:var(--field)}
+.r1{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.name{margin:0;font-size:17px;line-height:1.25;font-weight:600;flex:1;min-width:0;overflow-wrap:anywhere}
+.badge{flex:none;position:relative;display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px 0 9px;
+  border-radius:14px;font-size:13px;font-weight:700;white-space:nowrap}
+.badge::before{content:"";position:absolute;inset:-10px -6px}
+.badge i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.b-in{color:var(--in);background:var(--in-bg)}
+.b-out{color:var(--out);background:var(--out-bg)}
+.b-stop{color:var(--stop);background:var(--stop-bg)}
+.meta{margin-top:3px;font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.meta em{font-style:normal;color:var(--out);font-weight:600}
+.r2{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:9px}
+.price{font-size:30px;line-height:1.05;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.price u{text-decoration:none;font-size:.62em;font-weight:700;margin-left:2px;letter-spacing:0}
+.price.none{font-size:18px;font-weight:600;color:var(--faint);letter-spacing:0}
+.cost{font-size:13px;font-weight:500;color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap}
+body.nocost .cost{display:none}
+.s-out .price{opacity:.72}
+.s-stop .name,.s-stop .price{opacity:.5}
+.s-stop .price{text-decoration:line-through;text-decoration-thickness:2px}
+.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%,35%{background:rgba(255,199,44,.4)}100%{background:transparent}}
+
+.empty{text-align:center;padding:48px 24px;color:var(--muted)}
+.empty svg{width:44px;height:44px;stroke:var(--faint);fill:none;stroke-width:1.6;stroke-linecap:round;margin-bottom:8px}
+.empty b{display:block;color:var(--ink);font-size:18px;margin-bottom:4px}
+.empty .btn{margin-top:18px;max-width:300px;margin-left:auto;margin-right:auto}
+
+#fab{position:fixed;z-index:30;right:max(18px,calc(50% - 320px + 18px));bottom:calc(20px + env(safe-area-inset-bottom));
+  width:60px;height:60px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;
+  box-shadow:0 6px 20px rgba(14,27,51,.28);transition:transform .12s}
+#fab:active{transform:scale(.94)}
+#fab{transition:transform .2s,opacity .2s}
+#fab.away{transform:translateY(110px);opacity:0;pointer-events:none}
+#fab svg{width:28px;height:28px;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;fill:none}
+
+/* ---------- Bảng trượt ---------- */
+.overlay{position:fixed;inset:0;z-index:50;background:rgba(5,10,20,.5);opacity:0;transition:opacity .22s;touch-action:none}
+.overlay.open{opacity:1}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:60;max-width:640px;margin:0 auto;background:var(--sheet);
+  border-radius:24px 24px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.28);display:flex;flex-direction:column;
+  max-height:92vh;max-height:92dvh;transform:translateY(105%);transition:transform .3s cubic-bezier(.2,.85,.25,1);overscroll-behavior:contain}
+.sheet.open{transform:none}
+.sheet.nudge{animation:nudge .35s}
+@keyframes nudge{20%{transform:translateY(-8px)}60%{transform:translateY(3px)}}
+.grab{width:40px;height:5px;border-radius:3px;background:var(--line-strong);margin:9px auto 0;flex:none}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 8px 0 20px;flex:none}
+.sheet-head h2{margin:0;font-size:20px;font-weight:800;letter-spacing:-.015em;min-width:0;overflow-wrap:anywhere}
+.x{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:var(--muted);flex:none}
+.x svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;fill:none}
+.sheet-body{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:4px 20px 18px;overscroll-behavior:contain}
+.sheet-foot{padding:12px 20px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line);flex:none}
+.fld{display:block;margin-top:16px}
+.fld>span{display:block;font-size:14px;font-weight:650;color:var(--muted);margin-bottom:6px}
+.inp{width:100%;height:50px;border-radius:13px;border:2px solid transparent;background:var(--field);padding:0 14px;
+  font:inherit;font-size:17px;color:var(--ink);outline:none;-webkit-appearance:none;appearance:none}
+.inp:focus{border-color:var(--primary);background:var(--sheet)}
+.inp.big{height:64px;font-size:30px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+select.inp{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1.5l6 6 6-6' fill='none' stroke='%238791A3' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.seg button{min-height:56px;padding:6px 6px;border-radius:13px;background:var(--field);font-size:14px;font-weight:700;
+  line-height:1.15;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center}
+.seg button i{width:10px;height:10px;border-radius:50%}
+.seg button[aria-checked=true].k-in{background:var(--in-bg);color:var(--in);box-shadow:inset 0 0 0 2.5px var(--in)}
+.seg button[aria-checked=true].k-out{background:var(--out-bg);color:var(--out);box-shadow:inset 0 0 0 2.5px var(--out)}
+.seg button[aria-checked=true].k-stop{background:var(--stop-bg);color:var(--stop);box-shadow:inset 0 0 0 2.5px var(--stop)}
+.hint{margin:8px 2px 0;font-size:14px;color:var(--muted);min-height:20px}
+.hint b{color:var(--in);font-weight:700}
+.hint b.neg,.warn{color:var(--out)}
+.warn{font-size:13px;font-weight:600;margin:6px 2px 0}
+.err{color:var(--out);font-size:14px;font-weight:600;margin:12px 2px 0;min-height:0}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;height:54px;border-radius:15px;background:var(--primary);
+  color:var(--on-primary);font-size:17px;font-weight:750}
+.btn.ghost{background:var(--field);color:var(--ink)}
+.btn.danger{background:var(--out-bg);color:var(--out)}
+.btn.danger.armed{background:var(--out);color:#fff}
+.btn+.btn{margin-top:10px}
+.del{margin-top:22px}
+.pick{display:grid;gap:10px;margin-top:10px}
+.pick button{display:flex;align-items:center;gap:14px;height:62px;padding:0 18px;border-radius:15px;background:var(--field);
+  font-size:18px;font-weight:700;text-align:left}
+.pick button i{width:14px;height:14px;border-radius:50%;flex:none}
+.pick button .ck{margin-left:auto;width:22px;height:22px;stroke:currentColor;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pick button[aria-checked=true]{box-shadow:inset 0 0 0 2.5px currentColor}
+.pick .k-in{color:var(--in)} .pick .k-out{color:var(--out)} .pick .k-stop{color:var(--stop)}
+.pick button span{color:var(--ink)}
+.sub{margin:2px 0 0;font-size:15px;color:var(--muted)}
+.menu{background:var(--field);border-radius:16px;overflow:hidden;margin-top:12px}
+.menu button{display:flex;align-items:center;gap:14px;width:100%;min-height:62px;padding:10px 16px;text-align:left}
+.menu button+button{border-top:1px solid var(--line)}
+.menu svg{width:24px;height:24px;flex:none;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;color:var(--muted)}
+.menu b{display:block;font-size:17px;font-weight:650}
+.menu small{display:block;font-size:13px;color:var(--muted);margin-top:1px}
+.menu .red b,.menu .red svg{color:var(--out)}
+.foot-note{margin:16px 4px 0;font-size:13px;color:var(--muted)}
+.foot-note.bad{color:var(--out);font-weight:600}
+.confirm p{font-size:17px;margin:10px 0 0}
+
+.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translate(-50%,16px);z-index:80;
+  background:#0E1B33;color:#fff;padding:12px 18px;border-radius:15px;font-size:15px;font-weight:600;
+  opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;max-width:calc(100vw - 32px);display:flex;gap:16px;align-items:center;
+  box-shadow:0 8px 26px rgba(0,0,0,.3)}
+@media (prefers-color-scheme:dark){.toast{background:#F2F5FA;color:#0E1B33}}
+.toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast button{color:#FFC72C;font-weight:800;padding:6px 2px}
+@media (prefers-color-scheme:dark){.toast button{color:#8A5A00}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased pb-24">
-
-    <!-- Header Cố định -->
-    <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200 px-4 py-3">
-        <div class="max-w-md mx-auto">
-            <div class="flex items-center justify-between mb-2">
-                <div>
-                    <h1 class="text-base font-bold text-slate-900 leading-tight">Tra Cứu Giá Panasonic</h1>
-                    <p class="text-xs text-slate-500">Quốc Hùng Cần Thơ (10/2026)</p>
-                </div>
-                <button onclick="openExportModal()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1.5 rounded-lg font-medium transition">
-                    ⚙️ Dữ liệu
-                </button>
-            </div>
-
-            <!-- Ô tìm kiếm -->
-            <div class="relative">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
-                    🔍
-                </span>
-                <input type="text" id="searchInput" placeholder="Tìm tên thiết bị, mã sản phẩm..." 
-                    class="w-full pl-9 pr-4 py-2.5 bg-slate-100 border-none rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:bg-white transition outline-none">
-            </div>
-
-            <!-- Bộ lọc Danh mục & Trạng thái -->
-            <div class="flex gap-2 mt-2.5 overflow-x-auto pb-1 no-scrollbar text-xs" id="categoryFilters">
-                <button onclick="filterCategory('ALL')" class="cat-btn bg-blue-600 text-white px-3 py-1.5 rounded-full font-medium whitespace-nowrap transition">Tất cả</button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Nội dung danh sách sản phẩm -->
-    <main class="max-w-md mx-auto px-4 pt-3">
-        <div class="flex justify-between items-center mb-2 px-1">
-            <span class="text-xs text-slate-500 font-medium" id="resultCount">Đang tải sản phẩm...</span>
-            <div class="flex gap-2 text-xs">
-                <select id="statusFilter" onchange="filterProducts()" class="bg-white border border-slate-200 text-slate-600 rounded-lg px-2 py-1 text-xs outline-none">
-                    <option value="ALL">Tất cả trạng thái</option>
-                    <option value="in_stock">🟢 Còn hàng</option>
-                    <option value="out_of_stock">🔴 Hết hàng</option>
-                    <option value="discontinued">⚫ Ngưng kinh doanh</option>
-                </select>
-            </div>
-        </div>
-
-        <div id="productList" class="space-y-3">
-            <!-- Sản phẩm được render bằng JS -->
-        </div>
-    </main>
-
-    <!-- Modal Chỉnh sửa Giá / Trạng thái -->
-    <div id="editModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-end sm:items-center justify-center sm:p-4 hidden">
-        <div class="bg-white w-full sm:max-w-md rounded-t-3xl sm:rounded-2xl p-5 ios-shadow animate-slide-up">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="font-bold text-slate-900" id="editModalTitle">Cập nhật sản phẩm</h3>
-                <button onclick="closeEditModal()" class="text-slate-400 hover:text-slate-600 text-lg font-bold px-2">✕</button>
-            </div>
-            <input type="hidden" id="editProductId">
-            <div class="space-y-3 text-sm">
-                <div>
-                    <label class="block text-xs font-medium text-slate-500 mb-1">Tên sản phẩm</label>
-                    <input type="text" id="editName" class="w-full bg-slate-100 border rounded-xl px-3 py-2 text-slate-800 font-medium" readonly>
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-slate-500 mb-1">Giá Bán Lẻ Đề Xuất (VNĐ)</label>
-                    <input type="number" id="editRetailPrice" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none font-bold text-blue-600">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-slate-500 mb-1">Giá Nhập Có VAT (VNĐ)</label>
-                    <input type="number" id="editImportPrice" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-slate-500 mb-1">Trạng thái sản phẩm</label>
-                    <select id="editStatus" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 outline-none">
-                        <option value="in_stock">🟢 Còn hàng</option>
-                        <option value="out_of_stock">🔴 Hết hàng</option>
-                        <option value="discontinued">⚫ Ngưng kinh doanh</option>
-                    </select>
-                </div>
-            </div>
-            <div class="flex gap-3 mt-5">
-                <button onclick="closeEditModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-2.5 rounded-xl font-medium transition">Hủy</button>
-                <button onclick="saveProductEdit()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-xl font-medium transition">Lưu thay đổi</button>
-            </div>
-        </div>
+<body>
+<div id="app">
+  <header class="top">
+    <div>
+      <h1>Giá bán lẻ Panasonic</h1>
+      <p>Bảng giá tháng 10/2026</p>
     </div>
-
-    <!-- Modal Quản lý dữ liệu -->
-    <div id="dataModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-        <div class="bg-white w-full max-w-md rounded-2xl p-5 ios-shadow">
-            <h3 class="font-bold text-slate-900 mb-3">Quản lý dữ liệu ứng dụng</h3>
-            <p class="text-xs text-slate-500 mb-4">Bạn có thể khôi phục lại giá gốc ban đầu hoặc xóa dữ liệu tùy chỉnh.</p>
-            <div class="space-y-2.5">
-                <button onclick="resetToDefaultData()" class="w-full bg-amber-50 hover:bg-amber-100 text-amber-700 py-2.5 rounded-xl font-medium text-sm transition">
-                    🔄 Khôi phục giá gốc mặc định
-                </button>
-                <button onclick="closeExportModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-2.5 rounded-xl font-medium text-sm transition">
-                    Đóng
-                </button>
-            </div>
-        </div>
+    <div class="actions">
+      <button class="icon-btn" id="btnEye" aria-label="Ẩn hoặc hiện giá nhập" aria-pressed="false">
+        <svg class="eye-on" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg class="eye-off" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 5.1A10 10 0 0112 5c6.4 0 10 7 10 7a17 17 0 01-3.2 4M6.5 6.7C3.7 8.5 2 12 2 12s3.6 7 10 7c1.7 0 3.2-.4 4.5-1"/><path d="M9.9 9.9a3 3 0 004.2 4.2"/></svg>
+      </button>
+      <button class="icon-btn" id="btnMenu" aria-label="Menu">
+        <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/></svg>
+      </button>
     </div>
+  </header>
 
-    <script>
-        // Dữ liệu gốc chuẩn 121 sản phẩm từ Quôc Hùng 10/2026
-        const defaultProducts = [
-            { id: 1, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Ổ có che full", listPrice: 34000, importPrice: 16603, retailPrice: 20000, status: "in_stock" },
-            { id: 2, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Mặt 1,2,3 full", listPrice: 18100, importPrice: 9136, retailPrice: 11000, status: "in_stock" },
-            { id: 3, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Công tắc full", listPrice: 14700, importPrice: 9481, retailPrice: 11000, status: "in_stock" },
-            { id: 4, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "C.tắc cầu thang full", listPrice: 39500, importPrice: 25726, retailPrice: 31000, status: "in_stock" },
-            { id: 5, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Ổ tivi full", listPrice: 71500, importPrice: 46568, retailPrice: 56000, status: "in_stock" },
-            { id: 6, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Ổ mạng full", listPrice: 192000, importPrice: 125050, retailPrice: 150000, status: "in_stock" },
-            { id: 7, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Dimmer đèn, quạt full", listPrice: 63500, importPrice: 40951, retailPrice: 49000, status: "in_stock" },
-            { id: 8, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Mặt CB full", listPrice: 18100, importPrice: 11789, retailPrice: 14000, status: "in_stock" },
-            { id: 9, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Mặt bít đơn full", listPrice: 20000, importPrice: 12898, retailPrice: 15000, status: "in_stock" },
-            { id: 10, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Mặt bít đôi full", listPrice: 38000, importPrice: 24506, retailPrice: 29000, status: "in_stock" },
-            { id: 11, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Cầu chì full", listPrice: 18500, importPrice: 11931, retailPrice: 14000, status: "in_stock" },
-            { id: 12, category: "THIẾT BỊ ĐIỆN FULL COLOR", name: "Mặt 4,6 full", listPrice: 36000, importPrice: 23218, retailPrice: 28000, status: "in_stock" },
-            { id: 13, category: "PANASONIC WIDE SERIES", name: "Mặt 1,2,3 wide", listPrice: 20000, importPrice: 12338, retailPrice: 15000, status: "in_stock" },
-            { id: 14, category: "PANASONIC WIDE SERIES", name: "Ổ che wide", listPrice: 45800, importPrice: 28575, retailPrice: 34000, status: "in_stock" },
-            { id: 15, category: "PANASONIC WIDE SERIES", name: "Công tắc wide", listPrice: 24600, importPrice: 15692, retailPrice: 19000, status: "in_stock" },
-            { id: 16, category: "PANASONIC WIDE SERIES", name: "C.tắc cầu thang wide", listPrice: 50500, importPrice: 32569, retailPrice: 39000, status: "in_stock" },
-            { id: 17, category: "PANASONIC WIDE SERIES", name: "Ổ tivi wide", listPrice: 96000, importPrice: 61912, retailPrice: 74000, status: "in_stock" },
-            { id: 18, category: "PANASONIC WIDE SERIES", name: "Ổ mạng wide", listPrice: 208000, importPrice: 134141, retailPrice: 160000, status: "in_stock" },
-            { id: 19, category: "PANASONIC WIDE SERIES", name: "Mặt CB wide", listPrice: 20000, importPrice: 12900, retailPrice: 15000, status: "in_stock" },
-            { id: 20, category: "PANASONIC WIDE SERIES", name: "Mặt 4,6 wide", listPrice: 38000, importPrice: 24508, retailPrice: 29000, status: "in_stock" },
-            { id: 21, category: "PANASONIC WIDE SERIES", name: "Đại nhựa", listPrice: 4000, importPrice: 2816, retailPrice: 3500, status: "in_stock" },
-            { id: 22, category: "PANASONIC WIDE SERIES", name: "Đại CB", listPrice: 9000, importPrice: 6156, retailPrice: 7500, status: "in_stock" },
-            { id: 23, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Tép đơn 110 ... 140", listPrice: 99000, importPrice: 63850, retailPrice: 77000, status: "in_stock" },
-            { id: 24, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Tép đơn 150 ... 163", listPrice: 233000, importPrice: 150273, retailPrice: 180000, status: "in_stock" },
-            { id: 25, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Tép đôi 210 ... 240", listPrice: 284000, importPrice: 183166, retailPrice: 220000, status: "in_stock" },
-            { id: 26, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Tép đôi 250 ... 263", listPrice: 469000, importPrice: 302482, retailPrice: 365000, status: "in_stock" },
-            { id: 27, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Ch.giật tép 232, 240", listPrice: 72000, importPrice: 462096, retailPrice: 555000, status: "in_stock" },
-            { id: 28, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Ch.giật tép 263", listPrice: 1021000, importPrice: 655278, retailPrice: 785000, status: "in_stock" },
-            { id: 29, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "CB Na 10,15,20,30,40", listPrice: 91000, importPrice: 57412, retailPrice: 69000, status: "in_stock" },
-            { id: 30, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Ch.giật cóc", listPrice: 396000, importPrice: 249836, retailPrice: 300000, status: "in_stock" },
-            { id: 31, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Ch.giật 2 nút", listPrice: 972000, importPrice: 613235, retailPrice: 735000, status: "in_stock" },
-            { id: 32, category: "TÉP - CHỐNG GIẬT TÉP - CB CÓC", name: "Ch.giật 1 nút", listPrice: 827000, importPrice: 521754, retailPrice: 625000, status: "in_stock" },
-            { id: 33, category: "BĂNG KEO NANOCO", name: "Băng Keo 10Y Đài Loan", listPrice: 9400, importPrice: 5656, retailPrice: 7000, status: "in_stock" },
-            { id: 34, category: "BĂNG KEO NANOCO", name: "Băng Keo 20Y Đài Loan", listPrice: 16400, importPrice: 9773, retailPrice: 12000, status: "in_stock" },
-            { id: 35, category: "BĂNG KEO NANOCO", name: "Băng Keo 20Y Trung Quốc", listPrice: 12000, importPrice: 7645, retailPrice: 9000, status: "in_stock" },
-            { id: 36, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Chup CB Cóc", listPrice: 8000, importPrice: 5472, retailPrice: 6500, status: "in_stock" },
-            { id: 37, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Chup CB 2 tép", listPrice: 18000, importPrice: 12312, retailPrice: 15000, status: "in_stock" },
-            { id: 38, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Nổi đơn", listPrice: 10500, importPrice: 7182, retailPrice: 8500, status: "in_stock" },
-            { id: 39, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Nổi đôi", listPrice: 16000, importPrice: 10944, retailPrice: 13000, status: "in_stock" },
-            { id: 40, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Âm đơn", listPrice: 6200, importPrice: 3571, retailPrice: 4500, status: "in_stock" },
-            { id: 41, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Âm đôi", listPrice: 10500, importPrice: 7182, retailPrice: 8500, status: "in_stock" },
-            { id: 42, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Hộp Nổi 100*100", listPrice: 22000, importPrice: 15048, retailPrice: 18000, status: "in_stock" },
-            { id: 43, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Hộp Nổi 120*120", listPrice: 27000, importPrice: 18468, retailPrice: 22000, status: "in_stock" },
-            { id: 44, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Hộp Nổi 150*150", listPrice: 39000, importPrice: 26676, retailPrice: 32000, status: "in_stock" },
-            { id: 45, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Hộp Nổi 200*200", listPrice: 68000, importPrice: 46512, retailPrice: 56000, status: "in_stock" },
-            { id: 46, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Tủ nhựa 2,4 mặt nhựa", listPrice: 99000, importPrice: 63687, retailPrice: 76000, status: "in_stock" },
-            { id: 47, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Tủ nhựa 8 mặt nhựa", listPrice: 155000, importPrice: 99712, retailPrice: 120000, status: "in_stock" },
-            { id: 48, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Tủ sắt 10", listPrice: 270000, importPrice: 173691, retailPrice: 210000, status: "in_stock" },
-            { id: 49, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Tủ sắt 14", listPrice: 330000, importPrice: 212289, retailPrice: 255000, status: "in_stock" },
-            { id: 50, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Tủ sắt 2-4 mặt nhựa", listPrice: 115000, importPrice: 73980, retailPrice: 89000, status: "in_stock" },
-            { id: 51, category: "HỘP ÂM - HỘP NỔI & TỦ ĐIỆN", name: "Tủ sắt 4-8 mặt nhựa", listPrice: 176000, importPrice: 113221, retailPrice: 135000, status: "in_stock" },
-            { id: 52, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt trần F600 3 cánh", listPrice: 1700000, importPrice: 1096330, retailPrice: 1320000, status: "in_stock" },
-            { id: 53, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt trần F60-FV2 3 cánh", listPrice: 2020000, importPrice: 1272600, retailPrice: 1530000, status: "in_stock" },
-            { id: 54, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt trần 4 cánh F56XPG", listPrice: 4020000, importPrice: 2536218, retailPrice: 3040000, status: "in_stock" },
-            { id: 55, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt trần 4 cánh F56MPG", listPrice: 3640000, importPrice: 2296476, retailPrice: 2760000, status: "in_stock" },
-            { id: 56, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt trần 5 cánh F-60GDS", listPrice: 7160000, importPrice: 4517244, retailPrice: 5420000, status: "in_stock" },
-            { id: 57, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt bàn B4", listPrice: 1580000, importPrice: 963642, retailPrice: 1160000, status: "in_stock" },
-            { id: 58, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt treo remost F409M", listPrice: 2930000, importPrice: 1787007, retailPrice: 2140000, status: "in_stock" },
-            { id: 59, category: "QUẠT TRẦN - QUẠT ĐIỆN PANASONIC", name: "Quạt Đứng F409K", listPrice: 4130000, importPrice: 2518887, retailPrice: 3020000, status: "in_stock" },
-            { id: 60, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà trắng 16", listPrice: 170000, importPrice: 91035, retailPrice: 110000, status: "in_stock" },
-            { id: 61, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà trắng 20", listPrice: 245000, importPrice: 131198, retailPrice: 155000, status: "in_stock" },
-            { id: 62, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà trắng 25", listPrice: 255000, importPrice: 136553, retailPrice: 165000, status: "in_stock" },
-            { id: 63, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà trắng 32", listPrice: 299000, importPrice: 160115, retailPrice: 190000, status: "in_stock" },
-            { id: 64, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà Đen 16 PE2", listPrice: 153000, importPrice: 66249, retailPrice: 79000, status: "in_stock" },
-            { id: 65, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà Đen 20 PE2", listPrice: 220000, importPrice: 95260, retailPrice: 115000, status: "in_stock" },
-            { id: 66, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "R.gà Đen 25 PE2", listPrice: 229000, importPrice: 99157, retailPrice: 120000, status: "in_stock" },
-            { id: 67, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "Ống cứng 16 (750N)", listPrice: 25000, importPrice: 15323, retailPrice: 18000, status: "in_stock" },
-            { id: 68, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "Ống cứng 20 (750N)", listPrice: 33000, importPrice: 20226, retailPrice: 24000, status: "in_stock" },
-            { id: 69, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "Ống cứng 25 (750N)", listPrice: 48000, importPrice: 29419, retailPrice: 35000, status: "in_stock" },
-            { id: 70, category: "RUỘT GÀ - ỐNG CỨNG 750N", name: "Ống cứng 32 (750N)", listPrice: 74000, importPrice: 45355, retailPrice: 54000, status: "in_stock" },
-            { id: 71, category: "NẸP VUÔNG NANO", name: "Nẹp Vuông Nano 2F", listPrice: 11400, importPrice: 6919, retailPrice: 8500, status: "in_stock" },
-            { id: 72, category: "NẸP VUÔNG NANO", name: "Nẹp Vuông Nano 2F5", listPrice: 17400, importPrice: 10560, retailPrice: 13000, status: "in_stock" },
-            { id: 73, category: "NẸP VUÔNG NANO", name: "Nẹp Vuông Nano 3F", listPrice: 21000, importPrice: 12745, retailPrice: 15000, status: "in_stock" },
-            { id: 74, category: "NẸP VUÔNG NANO", name: "Nẹp Vuông Nano 4F", listPrice: 32600, importPrice: 19785, retailPrice: 24000, status: "in_stock" },
-            { id: 75, category: "NẸP VUÔNG NANO", name: "Nẹp Vuông Nano 5F", listPrice: 70000, importPrice: 42483, retailPrice: 51000, status: "in_stock" },
-            { id: 76, category: "MÁY NƯỚC NÓNG PANASONIC", name: "DH-3VS1VW (khg bơm)", listPrice: 3220000, importPrice: 2144520, retailPrice: 2570000, status: "in_stock" },
-            { id: 77, category: "MÁY NƯỚC NÓNG PANASONIC", name: "DH-4VS1VW (không Bơm 4,5K)", listPrice: 3520000, importPrice: 2344320, retailPrice: 2810000, status: "in_stock" },
-            { id: 78, category: "MÁY NƯỚC NÓNG PANASONIC", name: "DH-3VP1VW (có Bơm)", listPrice: 5210000, importPrice: 3469860, retailPrice: 4160000, status: "in_stock" },
-            { id: 79, category: "MÁY NƯỚC NÓNG PANASONIC", name: "DH-4VP1VW (có bơm 4,5K)", listPrice: 5430000, importPrice: 3616380, retailPrice: 4340000, status: "in_stock" },
-            { id: 80, category: "BƠM NƯỚC PANA & NANOCO", name: "Bơm 129", listPrice: 1780000, importPrice: 1044504, retailPrice: 1250000, status: "in_stock" },
-            { id: 81, category: "BƠM NƯỚC PANA & NANOCO", name: "Bơm 200 (GP-201JXK-SV5) Mới", listPrice: 2300000, importPrice: 1342970, retailPrice: 1610000, status: "in_stock" },
-            { id: 82, category: "BƠM NƯỚC PANA & NANOCO", name: "Bơm A130", listPrice: 2480000, importPrice: 1396736, retailPrice: 1680000, status: "in_stock" },
-            { id: 83, category: "BƠM NƯỚC PANA & NANOCO", name: "Bơm A200", listPrice: 2970000, importPrice: 1681911, retailPrice: 2020000, status: "in_stock" },
-            { id: 84, category: "BƠM NƯỚC PANA & NANOCO", name: "Bơm 250", listPrice: 3840000, importPrice: 2207232, retailPrice: 2650000, status: "in_stock" },
-            { id: 85, category: "BƠM NƯỚC PANA & NANOCO", name: "NSP128-A (Nanoco)", listPrice: 2450000, importPrice: 1447705, retailPrice: 1740000, status: "in_stock" },
-            { id: 86, category: "BƠM NƯỚC PANA & NANOCO", name: "NSP200-A (Nanoco)", listPrice: 2670000, importPrice: 1577703, retailPrice: 1890000, status: "in_stock" },
-            { id: 87, category: "BƠM NƯỚC PANA & NANOCO", name: "NSP300-A (Nanoco)", listPrice: 2760000, importPrice: 1630884, retailPrice: 1960000, status: "in_stock" },
-            { id: 88, category: "BƠM NƯỚC PANA & NANOCO", name: "NSP400-A (Nanoco)", listPrice: 2860000, importPrice: 1689974, retailPrice: 2030000, status: "in_stock" },
-            { id: 89, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 15TGU1", listPrice: 870000, importPrice: 541923, retailPrice: 650000, status: "in_stock" },
-            { id: 90, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 20TGU", listPrice: 980000, importPrice: 610442, retailPrice: 735000, status: "in_stock" },
-            { id: 91, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 25TGU", listPrice: 1090000, importPrice: 678961, retailPrice: 815000, status: "in_stock" },
-            { id: 92, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 15AUL", listPrice: 1080001, importPrice: 672733, retailPrice: 805000, status: "in_stock" },
-            { id: 93, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 20AL", listPrice: 1100000, importPrice: 685190, retailPrice: 820000, status: "in_stock" },
-            { id: 94, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 25AL", listPrice: 1210000, importPrice: 753709, retailPrice: 905000, status: "in_stock" },
-            { id: 95, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 20AU9 (khg Lưới)", listPrice: 880000, importPrice: 548152, retailPrice: 660000, status: "in_stock" },
-            { id: 96, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút FV 25AU9 (không Lưới)", listPrice: 1000000, importPrice: 622900, retailPrice: 745000, status: "in_stock" },
-            { id: 97, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Quạt hút siêu mỏng NMV1523", listPrice: 375000, importPrice: 196463, retailPrice: 235000, status: "in_stock" },
-            { id: 98, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Quạt hút siêu mỏng NMV2023", listPrice: 420000, importPrice: 220038, retailPrice: 265000, status: "in_stock" },
-            { id: 99, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Quạt hút siêu mỏng NMV2523", listPrice: 490000, importPrice: 256711, retailPrice: 310000, status: "in_stock" },
-            { id: 100, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Tường NANO NWV1520", listPrice: 610000, importPrice: 319579, retailPrice: 385000, status: "in_stock" },
-            { id: 101, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Tường NANO NWV2020", listPrice: 680000, importPrice: 356252, retailPrice: 430000, status: "in_stock" },
-            { id: 102, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Tường NANO NWV2520", listPrice: 770000, importPrice: 403403, retailPrice: 485000, status: "in_stock" },
-            { id: 103, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Trần NANO NCV1520", listPrice: 530000, importPrice: 277667, retailPrice: 335000, status: "in_stock" },
-            { id: 104, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Trần NANO NCV2020", listPrice: 580000, importPrice: 303862, retailPrice: 365000, status: "in_stock" },
-            { id: 105, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Trần Có ống NCV1520-C", listPrice: 560000, importPrice: 293384, retailPrice: 350000, status: "in_stock" },
-            { id: 106, category: "QUẠT HÚT PANASONIC & NANOCO", name: "Hút Trần Có ống NCV2020-C", listPrice: 620000, importPrice: 324818, retailPrice: 390000, status: "in_stock" },
-            { id: 107, category: "THIẾT BỊ KHÁC", name: "Phích cắm tròn", listPrice: 7500, importPrice: 4450, retailPrice: 5500, status: "in_stock" },
-            { id: 108, category: "THIẾT BỊ KHÁC", name: "Phích Nối âm", listPrice: 13000, importPrice: 7713, retailPrice: 9500, status: "in_stock" },
-            { id: 109, category: "THIẾT BỊ KHÁC", name: "Bút Thử Điện Màu cam", listPrice: 19500, importPrice: 11681, retailPrice: 14000, status: "in_stock" },
-            { id: 110, category: "THIẾT BỊ KHÁC", name: "Bút Thử Điện Màu đỏ", listPrice: 19500, importPrice: 11681, retailPrice: 14000, status: "in_stock" },
-            { id: 111, category: "THIẾT BỊ KHÁC", name: "Vợt Muỗi Xanh - Hồng NMR101", listPrice: 120000, importPrice: 81480, retailPrice: 98000, status: "in_stock" },
-            { id: 112, category: "THIẾT BỊ KHÁC", name: "Vợt Muỗi Xanh Dương NMR102", listPrice: 135000, importPrice: 91665, retailPrice: 110000, status: "in_stock" },
-            { id: 113, category: "THIẾT BỊ KHÁC", name: "Vợt Muỗi thông minh NMR103", listPrice: 220000, importPrice: 149380, retailPrice: 180000, status: "in_stock" },
-            { id: 114, category: "THIẾT BỊ KHÁC", name: "Chuông không dây ND156", listPrice: 340000, importPrice: 211786, retailPrice: 255000, status: "in_stock" },
-            { id: 115, category: "THIẾT BỊ KHÁC", name: "Chuông không dây ND157", listPrice: 340000, importPrice: 211786, retailPrice: 255000, status: "in_stock" },
-            { id: 116, category: "THIẾT BỊ KHÁC", name: "Chuông cảm ứng NJX378", listPrice: 330000, importPrice: 205557, retailPrice: 245000, status: "in_stock" },
-            { id: 117, category: "THIẾT BỊ KHÁC", name: "Chuông cảm ứng NJX379-156", listPrice: 550000, importPrice: 342595, retailPrice: 410000, status: "in_stock" },
-            { id: 118, category: "THIẾT BỊ KHÁC", name: "NC5E-U10 Cáp Mạng 5, 10% đồng", listPrice: 880000, importPrice: 601920, retailPrice: 720000, status: "in_stock" },
-            { id: 119, category: "THIẾT BỊ KHÁC", name: "NC5E-F100 Cáp mạng 5, 100% Đồng", listPrice: 4050000, importPrice: 2720385, retailPrice: 3260000, status: "in_stock" },
-            { id: 120, category: "THIẾT BỊ KHÁC", name: "NC6-U10 Cáp mạng 6, 10% Đồng", listPrice: 1145000, importPrice: 776654, retailPrice: 930000, status: "in_stock" },
-            { id: 121, category: "THIẾT BỊ KHÁC", name: "NC6-F100 Cáp Mạng 6, 100% đồng", listPrice: 5240000, importPrice: 3519708, retailPrice: 4220000, status: "in_stock" }
-        ];
+  <div class="sticky" id="sticky">
+    <div class="search">
+      <svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Tìm tên hàng, nhóm hoặc giá" enterkeyhint="search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Tìm sản phẩm">
+      <button class="clr" id="qClear" aria-label="Xoá nội dung tìm" hidden><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.3 12.9l-1.4 1.4L12 13.4l-2.9 2.9-1.4-1.4 2.9-2.9-2.9-2.9 1.4-1.4 2.9 2.9 2.9-2.9 1.4 1.4-2.9 2.9z"/></svg></button>
+    </div>
+    <nav class="chips" id="cats" aria-label="Nhóm hàng" data-dyn></nav>
+    <nav class="chips status" id="stats" aria-label="Lọc theo tình trạng" data-dyn></nav>
+  </div>
 
-        let products = [];
-        let currentCategory = 'ALL';
+  <div class="info" id="info" data-dyn></div>
+  <main id="list" data-dyn></main>
 
-        // Khởi tạo dữ liệu từ LocalStorage hoặc mặc định
-        function initData() {
-            const saved = localStorage.getItem('panasonic_prices_2026');
-            if (saved) {
-                try {
-                    products = JSON.parse(saved);
-                } catch (e) {
-                    products = defaultProducts;
-                }
-            } else {
-                products = defaultProducts;
-                saveData();
-            }
-            renderCategories();
-            filterProducts();
-        }
+  <button id="fab" aria-label="Thêm sản phẩm mới"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+</div>
 
-        function saveData() {
-            localStorage.setItem('panasonic_prices_2026', JSON.stringify(products));
-        }
+<div class="overlay" id="overlay" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" hidden data-dyn></div>
+<div class="toast" id="toast" role="status" aria-live="polite" data-dyn></div>
+<input type="file" id="file" accept=".json,application/json" hidden>
 
-        function formatMoney(amount) {
-            return new Intl.NumberFormat('vi-VN').format(amount) + ' đ';
-        }
+<!-- Bảng giá hiện hành (được ghi lại khi bấm "Lưu bản HTML đã cập nhật") -->
+<script id="seed" type="application/json">{"version":1,"updatedAt":"2026-10-13T00:00:00.000Z","products":[{"id":"p1","cat":"Full Color (Panasonic)","name":"Ổ có che full","list":34000,"cost":16603,"price":20000,"status":"in","note":""},{"id":"p2","cat":"Full Color (Panasonic)","name":"Mặt 1,2,3 full","list":18100,"cost":9136,"price":11000,"status":"in","note":""},{"id":"p3","cat":"Full Color (Panasonic)","name":"Công tắc full","list":14700,"cost":9481,"price":11000,"status":"in","note":""},{"id":"p4","cat":"Full Color (Panasonic)","name":"C.tắc cầu thang full","list":39500,"cost":25726,"price":31000,"status":"in","note":""},{"id":"p5","cat":"Full Color (Panasonic)","name":"Ổ tivi full","list":71500,"cost":46568,"price":56000,"status":"in","note":""},{"id":"p6","cat":"Full Color (Panasonic)","name":"Ổ mạng full","list":192000,"cost":125050,"price":150000,"status":"in","note":""},{"id":"p7","cat":"Full Color (Panasonic)","name":"Dimmer đèn, quạt full","list":63500,"cost":40951,"price":49000,"status":"in","note":""},{"id":"p8","cat":"Full Color (Panasonic)","name":"Mặt CB full","list":18100,"cost":11789,"price":14000,"status":"in","note":""},{"id":"p9","cat":"Full Color (Panasonic)","name":"Mặt bít đơn full","list":20000,"cost":12898,"price":15000,"status":"in","note":""},{"id":"p10","cat":"Full Color (Panasonic)","name":"Mặt bít đôi full","list":38000,"cost":24506,"price":29000,"status":"in","note":""},{"id":"p11","cat":"Full Color (Panasonic)","name":"Cầu chì full","list":18500,"cost":11931,"price":14000,"status":"in","note":""},{"id":"p12","cat":"Full Color (Panasonic)","name":"Mặt 4,6 full","list":36000,"cost":23218,"price":28000,"status":"in","note":""},{"id":"p13","cat":"Wide Series (Panasonic)","name":"Mặt 1,2,3 wide","list":20000,"cost":12338,"price":15000,"status":"in","note":""},{"id":"p14","cat":"Wide Series (Panasonic)","name":"Ổ che wide","list":45800,"cost":28575,"price":34000,"status":"in","note":""},{"id":"p15","cat":"Wide Series (Panasonic)","name":"Công tắc wide","list":24600,"cost":15692,"price":19000,"status":"in","note":""},{"id":"p16","cat":"Wide Series (Panasonic)","name":"C.tắc cầu thang wide","list":50500,"cost":32569,"price":39000,"status":"in","note":""},{"id":"p17","cat":"Wide Series (Panasonic)","name":"Ổ tivi wide","list":96000,"cost":61912,"price":74000,"status":"in","note":""},{"id":"p18","cat":"Wide Series (Panasonic)","name":"Ổ mạng wide","list":208000,"cost":134141,"price":160000,"status":"in","note":""},{"id":"p19","cat":"Wide Series (Panasonic)","name":"Mặt CB wide","list":20000,"cost":12900,"price":15000,"status":"in","note":""},{"id":"p20","cat":"Wide Series (Panasonic)","name":"Mặt 4,6 wide","list":38000,"cost":24508,"price":29000,"status":"in","note":""},{"id":"p21","cat":"Wide Series (Panasonic)","name":"Đại nhựa","list":4000,"cost":2816,"price":3500,"status":"in","note":""},{"id":"p22","cat":"Wide Series (Panasonic)","name":"Đại CB","list":9000,"cost":6156,"price":7500,"status":"in","note":""},{"id":"p23","cat":"Tép, chống giật, CB cóc","name":"Tép đơn 110 ... 140","list":99000,"cost":63850,"price":77000,"status":"in","note":""},{"id":"p24","cat":"Tép, chống giật, CB cóc","name":"Tép đơn 150 ... 163","list":233000,"cost":150273,"price":180000,"status":"in","note":""},{"id":"p25","cat":"Tép, chống giật, CB cóc","name":"Tép đôi 210 ... 240","list":284000,"cost":183166,"price":220000,"status":"in","note":""},{"id":"p26","cat":"Tép, chống giật, CB cóc","name":"Tép đôi 250 ... 263","list":469000,"cost":302482,"price":365000,"status":"in","note":""},{"id":"p27","cat":"Tép, chống giật, CB cóc","name":"Ch.giật tép 232, 240","list":72000,"cost":462096,"price":555000,"status":"in","note":""},{"id":"p28","cat":"Tép, chống giật, CB cóc","name":"Ch.giật tép 263","list":1021000,"cost":655278,"price":785000,"status":"in","note":""},{"id":"p29","cat":"Tép, chống giật, CB cóc","name":"CB Na 10,15,20,30,40","list":91000,"cost":57412,"price":69000,"status":"in","note":""},{"id":"p30","cat":"Tép, chống giật, CB cóc","name":"Ch.giật cóc","list":396000,"cost":249836,"price":300000,"status":"in","note":""},{"id":"p31","cat":"Tép, chống giật, CB cóc","name":"Ch.giật 2 nút","list":972000,"cost":613235,"price":735000,"status":"in","note":""},{"id":"p32","cat":"Tép, chống giật, CB cóc","name":"Ch.giật 1 nút","list":827000,"cost":521754,"price":625000,"status":"in","note":""},{"id":"p33","cat":"Băng keo Nanoco","name":"Băng Keo 10Y Đài Loan","list":9400,"cost":5656,"price":7000,"status":"in","note":""},{"id":"p34","cat":"Băng keo Nanoco","name":"Băng Keo 20Y Đài Loan","list":16400,"cost":9773,"price":12000,"status":"in","note":""},{"id":"p35","cat":"Băng keo Nanoco","name":"Băng Keo 20Y Trung Quốc","list":12000,"cost":7645,"price":9000,"status":"in","note":""},{"id":"p36","cat":"Hộp âm, hộp nổi, tủ điện","name":"Chup CB Cóc","list":8000,"cost":5472,"price":6500,"status":"in","note":""},{"id":"p37","cat":"Hộp âm, hộp nổi, tủ điện","name":"Chup CB 2 tép","list":18000,"cost":12312,"price":15000,"status":"in","note":""},{"id":"p38","cat":"Hộp âm, hộp nổi, tủ điện","name":"Nổi đơn","list":10500,"cost":7182,"price":8500,"status":"in","note":""},{"id":"p39","cat":"Hộp âm, hộp nổi, tủ điện","name":"Nổi đôi","list":16000,"cost":10944,"price":13000,"status":"in","note":""},{"id":"p40","cat":"Hộp âm, hộp nổi, tủ điện","name":"Âm đơn","list":6200,"cost":3571,"price":4500,"status":"in","note":""},{"id":"p41","cat":"Hộp âm, hộp nổi, tủ điện","name":"Âm đôi","list":10500,"cost":7182,"price":8500,"status":"in","note":""},{"id":"p42","cat":"Hộp âm, hộp nổi, tủ điện","name":"Hộp Nổi 100*100","list":22000,"cost":15048,"price":18000,"status":"in","note":""},{"id":"p43","cat":"Hộp âm, hộp nổi, tủ điện","name":"Hộp Nổi 120*120","list":27000,"cost":18468,"price":22000,"status":"in","note":""},{"id":"p44","cat":"Hộp âm, hộp nổi, tủ điện","name":"Hộp Nổi 150*150","list":39000,"cost":26676,"price":32000,"status":"in","note":""},{"id":"p45","cat":"Hộp âm, hộp nổi, tủ điện","name":"Hộp Nổi 200*200","list":68000,"cost":46512,"price":56000,"status":"in","note":""},{"id":"p46","cat":"Hộp âm, hộp nổi, tủ điện","name":"Tủ nhựa 2,4 mặt nhựa","list":99000,"cost":63687,"price":76000,"status":"in","note":""},{"id":"p47","cat":"Hộp âm, hộp nổi, tủ điện","name":"Tủ nhựa 8 mặt nhựa","list":155000,"cost":99712,"price":120000,"status":"in","note":""},{"id":"p48","cat":"Hộp âm, hộp nổi, tủ điện","name":"Tủ sắt 10","list":270000,"cost":173691,"price":210000,"status":"in","note":""},{"id":"p49","cat":"Hộp âm, hộp nổi, tủ điện","name":"Tủ sắt 14","list":330000,"cost":212289,"price":255000,"status":"in","note":""},{"id":"p50","cat":"Hộp âm, hộp nổi, tủ điện","name":"Tủ sắt 2-4 mặt nhựa","list":115000,"cost":73980,"price":89000,"status":"in","note":""},{"id":"p51","cat":"Hộp âm, hộp nổi, tủ điện","name":"Tủ sắt 4-8 mặt nhựa","list":176000,"cost":113221,"price":135000,"status":"in","note":""},{"id":"p52","cat":"Quạt trần, quạt điện","name":"Quạt trần F600 3 cánh","list":1700000,"cost":1096330,"price":1320000,"status":"in","note":""},{"id":"p53","cat":"Quạt trần, quạt điện","name":"Quạt trần F60-FV2 3 cánh","list":2020000,"cost":1272600,"price":1530000,"status":"in","note":""},{"id":"p54","cat":"Quạt trần, quạt điện","name":"Quạt trần 4 cánh F56XPG","list":4020000,"cost":2536218,"price":3040000,"status":"in","note":""},{"id":"p55","cat":"Quạt trần, quạt điện","name":"Quạt trần 4 cánh F56MPG","list":3640000,"cost":2296476,"price":2760000,"status":"in","note":""},{"id":"p56","cat":"Quạt trần, quạt điện","name":"Quạt trần 5 cánh F-60GDS","list":7160000,"cost":4517244,"price":5420000,"status":"in","note":""},{"id":"p57","cat":"Quạt trần, quạt điện","name":"Quạt bàn B4","list":1580000,"cost":963642,"price":1160000,"status":"in","note":""},{"id":"p58","cat":"Quạt trần, quạt điện","name":"Quạt treo remost F409M","list":2930000,"cost":1787007,"price":2140000,"status":"in","note":""},{"id":"p59","cat":"Quạt trần, quạt điện","name":"Quạt Đứng F409K","list":4130000,"cost":2518887,"price":3020000,"status":"in","note":""},{"id":"p60","cat":"Ruột gà, ống cứng 750N","name":"R.gà trắng 16","list":170000,"cost":91035,"price":110000,"status":"in","note":""},{"id":"p61","cat":"Ruột gà, ống cứng 750N","name":"R.gà trắng 20","list":245000,"cost":131198,"price":155000,"status":"in","note":""},{"id":"p62","cat":"Ruột gà, ống cứng 750N","name":"R.gà trắng 25","list":255000,"cost":136553,"price":165000,"status":"in","note":""},{"id":"p63","cat":"Ruột gà, ống cứng 750N","name":"R.gà trắng 32","list":299000,"cost":160115,"price":190000,"status":"in","note":""},{"id":"p64","cat":"Ruột gà, ống cứng 750N","name":"R.gà Đen 16 PE2","list":153000,"cost":66249,"price":79000,"status":"in","note":""},{"id":"p65","cat":"Ruột gà, ống cứng 750N","name":"R.gà Đen 20 PE2","list":220000,"cost":95260,"price":115000,"status":"in","note":""},{"id":"p66","cat":"Ruột gà, ống cứng 750N","name":"R.gà Đen 25 PE2","list":229000,"cost":99157,"price":120000,"status":"in","note":""},{"id":"p67","cat":"Ruột gà, ống cứng 750N","name":"Ống cứng 16 (750N)","list":25000,"cost":15323,"price":18000,"status":"in","note":""},{"id":"p68","cat":"Ruột gà, ống cứng 750N","name":"Ống cứng 20 (750N)","list":33000,"cost":20226,"price":24000,"status":"in","note":""},{"id":"p69","cat":"Ruột gà, ống cứng 750N","name":"Ống cứng 25 (750N)","list":48000,"cost":29419,"price":35000,"status":"in","note":""},{"id":"p70","cat":"Ruột gà, ống cứng 750N","name":"Ống cứng 32 (750N)","list":74000,"cost":45355,"price":54000,"status":"in","note":""},{"id":"p71","cat":"Nẹp vuông Nano","name":"Nẹp Vuông Nano 2F","list":11400,"cost":6919,"price":8500,"status":"in","note":""},{"id":"p72","cat":"Nẹp vuông Nano","name":"Nẹp Vuông Nano 2F5","list":17400,"cost":10560,"price":13000,"status":"in","note":""},{"id":"p73","cat":"Nẹp vuông Nano","name":"Nẹp Vuông Nano 3F","list":21000,"cost":12745,"price":15000,"status":"in","note":""},{"id":"p74","cat":"Nẹp vuông Nano","name":"Nẹp Vuông Nano 4F","list":32600,"cost":19785,"price":24000,"status":"in","note":""},{"id":"p75","cat":"Nẹp vuông Nano","name":"Nẹp Vuông Nano 5F","list":70000,"cost":42483,"price":51000,"status":"in","note":""},{"id":"p76","cat":"Máy nước nóng","name":"DH-3VS1VW (khg bơm)","list":3220000,"cost":2144520,"price":2570000,"status":"in","note":""},{"id":"p77","cat":"Máy nước nóng","name":"DH-4VS1VW (không Bơm 4,5K)","list":3520000,"cost":2344320,"price":2810000,"status":"in","note":""},{"id":"p78","cat":"Máy nước nóng","name":"DH-3VP1VW (có Bơm)","list":5210000,"cost":3469860,"price":4160000,"status":"in","note":""},{"id":"p79","cat":"Máy nước nóng","name":"DH-4VP1VW (có bơm 4,5K)","list":5430000,"cost":3616380,"price":4340000,"status":"in","note":""},{"id":"p80","cat":"Bơm nước","name":"Bơm 129","list":1780000,"cost":1044504,"price":1250000,"status":"in","note":""},{"id":"p81","cat":"Bơm nước","name":"Bơm 200 (GP-201JXK-SV5) Mới","list":2300000,"cost":1342970,"price":1610000,"status":"in","note":""},{"id":"p82","cat":"Bơm nước","name":"Bơm A130","list":2480000,"cost":1396736,"price":1680000,"status":"in","note":""},{"id":"p83","cat":"Bơm nước","name":"Bơm A200","list":2970000,"cost":1681911,"price":2020000,"status":"in","note":""},{"id":"p84","cat":"Bơm nước","name":"Bơm 250","list":3840000,"cost":2207232,"price":2650000,"status":"in","note":""},{"id":"p85","cat":"Bơm nước","name":"NSP128-A (Nanoco)","list":2450000,"cost":1447705,"price":1740000,"status":"in","note":""},{"id":"p86","cat":"Bơm nước","name":"NSP200-A (Nanoco)","list":2670000,"cost":1577703,"price":1890000,"status":"in","note":""},{"id":"p87","cat":"Bơm nước","name":"NSP300-A (Nanoco)","list":2760000,"cost":1630884,"price":1960000,"status":"in","note":""},{"id":"p88","cat":"Bơm nước","name":"NSP400-A (Nanoco)","list":2860000,"cost":1689974,"price":2030000,"status":"in","note":""},{"id":"p89","cat":"Quạt hút","name":"Hút FV 15TGU1","list":870000,"cost":541923,"price":650000,"status":"in","note":""},{"id":"p90","cat":"Quạt hút","name":"Hút FV 20TGU","list":980000,"cost":610442,"price":735000,"status":"in","note":""},{"id":"p91","cat":"Quạt hút","name":"Hút FV 25TGU","list":1090000,"cost":678961,"price":815000,"status":"in","note":""},{"id":"p92","cat":"Quạt hút","name":"Hút FV 15AUL","list":1080001,"cost":672733,"price":805000,"status":"in","note":""},{"id":"p93","cat":"Quạt hút","name":"Hút FV 20AL","list":1100000,"cost":685190,"price":820000,"status":"in","note":""},{"id":"p94","cat":"Quạt hút","name":"Hút FV 25AL","list":1210000,"cost":753709,"price":905000,"status":"in","note":""},{"id":"p95","cat":"Quạt hút","name":"Hút FV 20AU9 (khg Lưới)","list":880000,"cost":548152,"price":660000,"status":"in","note":""},{"id":"p96","cat":"Quạt hút","name":"Hút FV 25AU9 (không Lưới)","list":1000000,"cost":622900,"price":745000,"status":"in","note":""},{"id":"p97","cat":"Quạt hút","name":"Quạt hút siêu mỏng NMV1523","list":375000,"cost":196463,"price":235000,"status":"in","note":""},{"id":"p98","cat":"Quạt hút","name":"Quạt hút siêu mỏng NMV2023","list":420000,"cost":220038,"price":265000,"status":"in","note":""},{"id":"p99","cat":"Quạt hút","name":"Quạt hút siêu mỏng NMV2523","list":490000,"cost":256711,"price":310000,"status":"in","note":""},{"id":"p100","cat":"Quạt hút","name":"Hút Tường NANO NWV1520","list":610000,"cost":319579,"price":385000,"status":"in","note":""},{"id":"p101","cat":"Quạt hút","name":"Hút Tường NANO NWV2020","list":680000,"cost":356252,"price":430000,"status":"in","note":""},{"id":"p102","cat":"Quạt hút","name":"Hút Tường NANO NWV2520","list":770000,"cost":403403,"price":485000,"status":"in","note":""},{"id":"p103","cat":"Quạt hút","name":"Hút Trần NANO NCV1520","list":530000,"cost":277667,"price":335000,"status":"in","note":""},{"id":"p104","cat":"Quạt hút","name":"Hút Trần NANO NCV2020","list":580000,"cost":303862,"price":365000,"status":"in","note":""},{"id":"p105","cat":"Quạt hút","name":"Hút Trần Có ống NCV1520-C","list":560000,"cost":293384,"price":350000,"status":"in","note":""},{"id":"p106","cat":"Quạt hút","name":"Hút Trần Có ống NCV2020-C","list":620000,"cost":324818,"price":390000,"status":"in","note":""},{"id":"p107","cat":"Thiết bị khác","name":"Phích cắm tròn","list":7500,"cost":4450,"price":5500,"status":"in","note":""},{"id":"p108","cat":"Thiết bị khác","name":"Phích Nối âm","list":13000,"cost":7713,"price":9500,"status":"in","note":""},{"id":"p109","cat":"Thiết bị khác","name":"Bút Thử Điện Màu cam","list":19500,"cost":11681,"price":14000,"status":"in","note":""},{"id":"p110","cat":"Thiết bị khác","name":"Bút Thử Điện Màu đỏ","list":19500,"cost":11681,"price":14000,"status":"in","note":""},{"id":"p111","cat":"Thiết bị khác","name":"Vợt Muỗi Xanh - Hồng NMR101","list":120000,"cost":81480,"price":98000,"status":"in","note":""},{"id":"p112","cat":"Thiết bị khác","name":"Vợt Muỗi Xanh Dương NMR102","list":135000,"cost":91665,"price":110000,"status":"in","note":""},{"id":"p113","cat":"Thiết bị khác","name":"Vợt Muỗi thông minh NMR103","list":220000,"cost":149380,"price":180000,"status":"in","note":""},{"id":"p114","cat":"Thiết bị khác","name":"Chuông không dây ND156","list":340000,"cost":211786,"price":255000,"status":"in","note":""},{"id":"p115","cat":"Thiết bị khác","name":"Chuông không dây ND157","list":340000,"cost":211786,"price":255000,"status":"in","note":""},{"id":"p116","cat":"Thiết bị khác","name":"Chuông cảm ứng NJX378","list":330000,"cost":205557,"price":245000,"status":"in","note":""},{"id":"p117","cat":"Thiết bị khác","name":"Chuông cảm ứng NJX379-156","list":550000,"cost":342595,"price":410000,"status":"in","note":""},{"id":"p118","cat":"Thiết bị khác","name":"NC5E-U10 Cáp Mạng 5, 10% đồng","list":880000,"cost":601920,"price":720000,"status":"in","note":""},{"id":"p119","cat":"Thiết bị khác","name":"NC5E-F100 Cáp mạng 5, 100% Đồng","list":4050000,"cost":2720385,"price":3260000,"status":"in","note":""},{"id":"p120","cat":"Thiết bị khác","name":"NC6-U10 Cáp mạng 6, 10% Đồng","list":1145000,"cost":776654,"price":930000,"status":"in","note":""},{"id":"p121","cat":"Thiết bị khác","name":"NC6-F100 Cáp Mạng 6, 100% đồng","list":5240000,"cost":3519708,"price":4220000,"status":"in","note":""}]}</script>
+<!-- Bảng giá gốc từ file Excel, dùng cho chức năng "Đặt lại" -->
+<script id="orig" type="application/json">{"version":1,"updatedAt":"2026-10-13T00:00:00.000Z","products":[{"id":"p1","cat":"Full Color (Panasonic)","name":"Ổ có che full","list":34000,"cost":16603,"price":20000,"status":"in","note":""},{"id":"p2","cat":"Full Color (Panasonic)","name":"Mặt 1,2,3 full","list":18100,"cost":9136,"price":11000,"status":"in","note":""},{"id":"p3","cat":"Full Color (Panasonic)","name":"Công tắc full","list":14700,"cost":9481,"price":11000,"status":"in","note":""},{"id":"p4","cat":"Full Color (Panasonic)","name":"C.tắc cầu thang full","list":39500,"cost":25726,"price":31000,"status":"in","note":""},{"id":"p5","cat":"Full Color (Panasonic)","name":"Ổ tivi full","list":71500,"cost":46568,"price":56000,"status":"in","note":""},{"id":"p6","cat":"Full Color (Panasonic)","name":"Ổ mạng full","list":192000,"cost":125050,"price":150000,"status":"in","note":""},{"id":"p7","cat":"Full Color (Panasonic)","name":"Dimmer đèn, quạt full","list":63500,"cost":40951,"price":49000,"status":"in","note":""},{"id":"p8","cat":"Full Color (Panasonic)","name":"Mặt CB full","list":18100,"cost":11789,"price":14000,"status":"in","note":""},{"id":"p9","cat":"Full Color (Panasonic)","name":"Mặt bít đơn full","list":20000,"cost":12898,"price":15000,"status":"in","note":""},{"id":"p10","cat":"Full Color (Panasonic)","name":"Mặt bít đôi full","list":38000,"cost":24506,"price":29000,"status":"in","note":""},{"id":"p11","cat":"Full Color (Panasonic)","name":"Cầu chì full","list":18500,"cost":11931,"price":14000,"status":"in","note":""},{"id":"p12","cat":"Full Color (Panasonic)","name":"Mặt 4,6 full","list":36000,"cost":23218,"price":28000,"status":"in","note":""},{"id":"p13","cat":"Wide Series (Panasonic)","name":"Mặt 1,2,3 wide","list":20000,"cost":12338,"price":15000,"status":"in","note":""},{"id":"p14","cat":"Wide Series (Panasonic)","name":"Ổ che wide","list":45800,"cost":28575,"price":34000,"status":"in","note":""},{"id":"p15","cat":"Wide Series (Panasonic)","name":"Công tắc wide","list":24600,"cost":15692,"price":19000,"status":"in","note":""},{"id":"p16","cat":"Wide Series (Panasonic)","name":"C.tắc cầu thang wide","list":50500,"cost":32569,"price":39000,"status":"in","note":""},{"id":"p17","cat":"Wide Series (Panasonic)","name":"Ổ tivi wide","list":96000,"cost":61912,"price":74000,"status":"in","note":""},{"id":"p18","cat":"Wide Series (Panasonic)","name":"Ổ mạng wide","list":208000,"cost":134141,"price":160000,"status":"in","note":""},{"id":"p19","cat":"Wide Series (Panasonic)","name":"Mặt CB wide","list":20000,"cost":12900,"price":15000,"status":"in","note":""},{"id":"p20","cat":"Wide Series (Panasonic)","name":"Mặt 4,6 wide","list":38000,"cost":24508,"price":29000,"status":"in","note":""},{"id":"p21","cat":"Wide Series (Panasonic)","name":"Đại nhựa","list":4000,"cost":2816,"price":3500,"status":"in","note":""},{"id":"p22","cat":"Wide Series (Panasonic)","name":"Đại CB","list":9000,"cost":6156,"price":7500,"status":"in","note":""},{"id":"p23","cat":"Tép, chống giật, CB cóc","name":"Tép đơn 110 ... 140","list":99000,"cost":63850,"price":77000,"status":"in","note":""},{"id":"p24","cat":"Tép, chống giật, CB cóc","name":"Tép đơn 150 ... 163","list":233000,"cost":150273,"price":180000,"status":"in","note":""},{"id":"p25","cat":"Tép, chống giật, CB cóc","name":"Tép đôi 210 ... 240","list":284000,"cost":183166,"price":220000,"status":"in","note":""},{"id":"p26","cat":"Tép, chống giật, CB cóc","name":"Tép đôi 250 ... 263","list":469000,"cost":302482,"price":365000,"status":"in","note":""},{"id":"p27","cat":"Tép, chống giật, CB cóc","name":"Ch.giật tép 232, 240","list":72000,"cost":462096,"price":555000,"status":"in","note":""},{"id":"p28","cat":"Tép, chống giật, CB cóc","name":"Ch.giật tép 263","list":1021000,"cost":655278,"price":785000,"status":"in","note":""},{"id":"p29","cat":"Tép, chống giật, CB cóc","name":"CB Na 10,15,20,30,40","list":91000,"cost":57412,"price":69000,"status":"in","note":""},{"id":"p30","cat":"Tép, chống giật, CB cóc","name":"Ch.giật cóc","list":396000,"cost":249836,"price":300000,"status":"in","note":""},{"id":"p31","cat":"Tép, chống giật, CB cóc","name":"Ch.giật 2 nút","list":972000,"cost":613235,"price":735000,"status":"in","note":""},{"id":"p32","cat":"Tép, chống giật, CB cóc","name":"Ch.giật 1 nút","list":827000,"cost":521754,"price":625000,"status":"in","note":""},{"id":"p33","cat":"Băng keo Nanoco","name":"Băng Keo 10Y Đài Loan","list":9400,"cost":5656,"price":7000,"status":"in","note":""},{"id":"p34","cat":"Băng keo Nanoco","name":"Băng Keo 20Y Đài Loan","list":16400,"cost":9773,"price":12000,"status":"in","note":""},{"id":"p35","cat":"Băng keo Nanoco","name":"Băng Keo 20Y Trung Quốc","list":12000,"cost":7645,"price":9000,"status":"in","note":""},{"id":"p36","cat":"Hộp âm, hộp nổi, tủ điện","name":"Chup CB Cóc","list":8000,"cost":5472,"price":6500,"status":"in","note":""},{"id":"p37","cat":"Hộp âm, hộp nổi, tủ điện","name":"Chup CB 2 tép","list":18000,"cost":12312,"price":15000,"status":"in","note":""},{"id":"p38","cat":"Hộp âm, hộp nổi, tủ điện","name":"Nổi đơn","list":10500,"cost":7182,"price":8500,"status":"in","note":""},{"id":"p39","cat":"Hộp âm, hộp nổi, tủ điện","name":"Nổi đôi","list":16000,"cost":10944,"price":13000,"status":"in","note":""},{"id":"p40","cat":"Hộp âm, hộp nổi, tủ điện","name":"Âm đơn","list":6200,"cost":3571,"price":4500,"status":"in","note":""},{"id":"p41","cat":"Hộp âm, hộp nổi, tủ điện","name":"Âm đôi","list":10500,"cost":7182,"price":8500,"status":"in","note":""},{"id":"p42","cat":"Hộp âm, hộp nổi, tủ điện","name":"Hộp Nổi 100*100","list":22000,"cost":15048,"price":18000,"status":"in","note":""},{"id":"p43","cat":"Hộp âm, hộp nổi, tủ điện","name":"Hộp Nổi 120*120","list":27000,"cost":18468,"price":22000,"status":"in","note":""},{"id":"p44","cat":"Hộp âm, hộp nổi, tủ điện","name":"Hộp Nổi 150*150","list":39000,"cost":26676,"price":32000,"status":"in","note":""},{"id":"p45","cat":"Hộp âm, hộp nổi, tủ điện","name":"Hộp Nổi 200*200","list":68000,"cost":46512,"price":56000,"status":"in","note":""},{"id":"p46","cat":"Hộp âm, hộp nổi, tủ điện","name":"Tủ nhựa 2,4 mặt nhựa","list":99000,"cost":63687,"price":76000,"status":"in","note":""},{"id":"p47","cat":"Hộp âm, hộp nổi, tủ điện","name":"Tủ nhựa 8 mặt nhựa","list":155000,"cost":99712,"price":120000,"status":"in","note":""},{"id":"p48","cat":"Hộp âm, hộp nổi, tủ điện","name":"Tủ sắt 10","list":270000,"cost":173691,"price":210000,"status":"in","note":""},{"id":"p49","cat":"Hộp âm, hộp nổi, tủ điện","name":"Tủ sắt 14","list":330000,"cost":212289,"price":255000,"status":"in","note":""},{"id":"p50","cat":"Hộp âm, hộp nổi, tủ điện","name":"Tủ sắt 2-4 mặt nhựa","list":115000,"cost":73980,"price":89000,"status":"in","note":""},{"id":"p51","cat":"Hộp âm, hộp nổi, tủ điện","name":"Tủ sắt 4-8 mặt nhựa","list":176000,"cost":113221,"price":135000,"status":"in","note":""},{"id":"p52","cat":"Quạt trần, quạt điện","name":"Quạt trần F600 3 cánh","list":1700000,"cost":1096330,"price":1320000,"status":"in","note":""},{"id":"p53","cat":"Quạt trần, quạt điện","name":"Quạt trần F60-FV2 3 cánh","list":2020000,"cost":1272600,"price":1530000,"status":"in","note":""},{"id":"p54","cat":"Quạt trần, quạt điện","name":"Quạt trần 4 cánh F56XPG","list":4020000,"cost":2536218,"price":3040000,"status":"in","note":""},{"id":"p55","cat":"Quạt trần, quạt điện","name":"Quạt trần 4 cánh F56MPG","list":3640000,"cost":2296476,"price":2760000,"status":"in","note":""},{"id":"p56","cat":"Quạt trần, quạt điện","name":"Quạt trần 5 cánh F-60GDS","list":7160000,"cost":4517244,"price":5420000,"status":"in","note":""},{"id":"p57","cat":"Quạt trần, quạt điện","name":"Quạt bàn B4","list":1580000,"cost":963642,"price":1160000,"status":"in","note":""},{"id":"p58","cat":"Quạt trần, quạt điện","name":"Quạt treo remost F409M","list":2930000,"cost":1787007,"price":2140000,"status":"in","note":""},{"id":"p59","cat":"Quạt trần, quạt điện","name":"Quạt Đứng F409K","list":4130000,"cost":2518887,"price":3020000,"status":"in","note":""},{"id":"p60","cat":"Ruột gà, ống cứng 750N","name":"R.gà trắng 16","list":170000,"cost":91035,"price":110000,"status":"in","note":""},{"id":"p61","cat":"Ruột gà, ống cứng 750N","name":"R.gà trắng 20","list":245000,"cost":131198,"price":155000,"status":"in","note":""},{"id":"p62","cat":"Ruột gà, ống cứng 750N","name":"R.gà trắng 25","list":255000,"cost":136553,"price":165000,"status":"in","note":""},{"id":"p63","cat":"Ruột gà, ống cứng 750N","name":"R.gà trắng 32","list":299000,"cost":160115,"price":190000,"status":"in","note":""},{"id":"p64","cat":"Ruột gà, ống cứng 750N","name":"R.gà Đen 16 PE2","list":153000,"cost":66249,"price":79000,"status":"in","note":""},{"id":"p65","cat":"Ruột gà, ống cứng 750N","name":"R.gà Đen 20 PE2","list":220000,"cost":95260,"price":115000,"status":"in","note":""},{"id":"p66","cat":"Ruột gà, ống cứng 750N","name":"R.gà Đen 25 PE2","list":229000,"cost":99157,"price":120000,"status":"in","note":""},{"id":"p67","cat":"Ruột gà, ống cứng 750N","name":"Ống cứng 16 (750N)","list":25000,"cost":15323,"price":18000,"status":"in","note":""},{"id":"p68","cat":"Ruột gà, ống cứng 750N","name":"Ống cứng 20 (750N)","list":33000,"cost":20226,"price":24000,"status":"in","note":""},{"id":"p69","cat":"Ruột gà, ống cứng 750N","name":"Ống cứng 25 (750N)","list":48000,"cost":29419,"price":35000,"status":"in","note":""},{"id":"p70","cat":"Ruột gà, ống cứng 750N","name":"Ống cứng 32 (750N)","list":74000,"cost":45355,"price":54000,"status":"in","note":""},{"id":"p71","cat":"Nẹp vuông Nano","name":"Nẹp Vuông Nano 2F","list":11400,"cost":6919,"price":8500,"status":"in","note":""},{"id":"p72","cat":"Nẹp vuông Nano","name":"Nẹp Vuông Nano 2F5","list":17400,"cost":10560,"price":13000,"status":"in","note":""},{"id":"p73","cat":"Nẹp vuông Nano","name":"Nẹp Vuông Nano 3F","list":21000,"cost":12745,"price":15000,"status":"in","note":""},{"id":"p74","cat":"Nẹp vuông Nano","name":"Nẹp Vuông Nano 4F","list":32600,"cost":19785,"price":24000,"status":"in","note":""},{"id":"p75","cat":"Nẹp vuông Nano","name":"Nẹp Vuông Nano 5F","list":70000,"cost":42483,"price":51000,"status":"in","note":""},{"id":"p76","cat":"Máy nước nóng","name":"DH-3VS1VW (khg bơm)","list":3220000,"cost":2144520,"price":2570000,"status":"in","note":""},{"id":"p77","cat":"Máy nước nóng","name":"DH-4VS1VW (không Bơm 4,5K)","list":3520000,"cost":2344320,"price":2810000,"status":"in","note":""},{"id":"p78","cat":"Máy nước nóng","name":"DH-3VP1VW (có Bơm)","list":5210000,"cost":3469860,"price":4160000,"status":"in","note":""},{"id":"p79","cat":"Máy nước nóng","name":"DH-4VP1VW (có bơm 4,5K)","list":5430000,"cost":3616380,"price":4340000,"status":"in","note":""},{"id":"p80","cat":"Bơm nước","name":"Bơm 129","list":1780000,"cost":1044504,"price":1250000,"status":"in","note":""},{"id":"p81","cat":"Bơm nước","name":"Bơm 200 (GP-201JXK-SV5) Mới","list":2300000,"cost":1342970,"price":1610000,"status":"in","note":""},{"id":"p82","cat":"Bơm nước","name":"Bơm A130","list":2480000,"cost":1396736,"price":1680000,"status":"in","note":""},{"id":"p83","cat":"Bơm nước","name":"Bơm A200","list":2970000,"cost":1681911,"price":2020000,"status":"in","note":""},{"id":"p84","cat":"Bơm nước","name":"Bơm 250","list":3840000,"cost":2207232,"price":2650000,"status":"in","note":""},{"id":"p85","cat":"Bơm nước","name":"NSP128-A (Nanoco)","list":2450000,"cost":1447705,"price":1740000,"status":"in","note":""},{"id":"p86","cat":"Bơm nước","name":"NSP200-A (Nanoco)","list":2670000,"cost":1577703,"price":1890000,"status":"in","note":""},{"id":"p87","cat":"Bơm nước","name":"NSP300-A (Nanoco)","list":2760000,"cost":1630884,"price":1960000,"status":"in","note":""},{"id":"p88","cat":"Bơm nước","name":"NSP400-A (Nanoco)","list":2860000,"cost":1689974,"price":2030000,"status":"in","note":""},{"id":"p89","cat":"Quạt hút","name":"Hút FV 15TGU1","list":870000,"cost":541923,"price":650000,"status":"in","note":""},{"id":"p90","cat":"Quạt hút","name":"Hút FV 20TGU","list":980000,"cost":610442,"price":735000,"status":"in","note":""},{"id":"p91","cat":"Quạt hút","name":"Hút FV 25TGU","list":1090000,"cost":678961,"price":815000,"status":"in","note":""},{"id":"p92","cat":"Quạt hút","name":"Hút FV 15AUL","list":1080001,"cost":672733,"price":805000,"status":"in","note":""},{"id":"p93","cat":"Quạt hút","name":"Hút FV 20AL","list":1100000,"cost":685190,"price":820000,"status":"in","note":""},{"id":"p94","cat":"Quạt hút","name":"Hút FV 25AL","list":1210000,"cost":753709,"price":905000,"status":"in","note":""},{"id":"p95","cat":"Quạt hút","name":"Hút FV 20AU9 (khg Lưới)","list":880000,"cost":548152,"price":660000,"status":"in","note":""},{"id":"p96","cat":"Quạt hút","name":"Hút FV 25AU9 (không Lưới)","list":1000000,"cost":622900,"price":745000,"status":"in","note":""},{"id":"p97","cat":"Quạt hút","name":"Quạt hút siêu mỏng NMV1523","list":375000,"cost":196463,"price":235000,"status":"in","note":""},{"id":"p98","cat":"Quạt hút","name":"Quạt hút siêu mỏng NMV2023","list":420000,"cost":220038,"price":265000,"status":"in","note":""},{"id":"p99","cat":"Quạt hút","name":"Quạt hút siêu mỏng NMV2523","list":490000,"cost":256711,"price":310000,"status":"in","note":""},{"id":"p100","cat":"Quạt hút","name":"Hút Tường NANO NWV1520","list":610000,"cost":319579,"price":385000,"status":"in","note":""},{"id":"p101","cat":"Quạt hút","name":"Hút Tường NANO NWV2020","list":680000,"cost":356252,"price":430000,"status":"in","note":""},{"id":"p102","cat":"Quạt hút","name":"Hút Tường NANO NWV2520","list":770000,"cost":403403,"price":485000,"status":"in","note":""},{"id":"p103","cat":"Quạt hút","name":"Hút Trần NANO NCV1520","list":530000,"cost":277667,"price":335000,"status":"in","note":""},{"id":"p104","cat":"Quạt hút","name":"Hút Trần NANO NCV2020","list":580000,"cost":303862,"price":365000,"status":"in","note":""},{"id":"p105","cat":"Quạt hút","name":"Hút Trần Có ống NCV1520-C","list":560000,"cost":293384,"price":350000,"status":"in","note":""},{"id":"p106","cat":"Quạt hút","name":"Hút Trần Có ống NCV2020-C","list":620000,"cost":324818,"price":390000,"status":"in","note":""},{"id":"p107","cat":"Thiết bị khác","name":"Phích cắm tròn","list":7500,"cost":4450,"price":5500,"status":"in","note":""},{"id":"p108","cat":"Thiết bị khác","name":"Phích Nối âm","list":13000,"cost":7713,"price":9500,"status":"in","note":""},{"id":"p109","cat":"Thiết bị khác","name":"Bút Thử Điện Màu cam","list":19500,"cost":11681,"price":14000,"status":"in","note":""},{"id":"p110","cat":"Thiết bị khác","name":"Bút Thử Điện Màu đỏ","list":19500,"cost":11681,"price":14000,"status":"in","note":""},{"id":"p111","cat":"Thiết bị khác","name":"Vợt Muỗi Xanh - Hồng NMR101","list":120000,"cost":81480,"price":98000,"status":"in","note":""},{"id":"p112","cat":"Thiết bị khác","name":"Vợt Muỗi Xanh Dương NMR102","list":135000,"cost":91665,"price":110000,"status":"in","note":""},{"id":"p113","cat":"Thiết bị khác","name":"Vợt Muỗi thông minh NMR103","list":220000,"cost":149380,"price":180000,"status":"in","note":""},{"id":"p114","cat":"Thiết bị khác","name":"Chuông không dây ND156","list":340000,"cost":211786,"price":255000,"status":"in","note":""},{"id":"p115","cat":"Thiết bị khác","name":"Chuông không dây ND157","list":340000,"cost":211786,"price":255000,"status":"in","note":""},{"id":"p116","cat":"Thiết bị khác","name":"Chuông cảm ứng NJX378","list":330000,"cost":205557,"price":245000,"status":"in","note":""},{"id":"p117","cat":"Thiết bị khác","name":"Chuông cảm ứng NJX379-156","list":550000,"cost":342595,"price":410000,"status":"in","note":""},{"id":"p118","cat":"Thiết bị khác","name":"NC5E-U10 Cáp Mạng 5, 10% đồng","list":880000,"cost":601920,"price":720000,"status":"in","note":""},{"id":"p119","cat":"Thiết bị khác","name":"NC5E-F100 Cáp mạng 5, 100% Đồng","list":4050000,"cost":2720385,"price":3260000,"status":"in","note":""},{"id":"p120","cat":"Thiết bị khác","name":"NC6-U10 Cáp mạng 6, 10% Đồng","list":1145000,"cost":776654,"price":930000,"status":"in","note":""},{"id":"p121","cat":"Thiết bị khác","name":"NC6-F100 Cáp Mạng 6, 100% đồng","list":5240000,"cost":3519708,"price":4220000,"status":"in","note":""}]}</script>
+<script>
+(function(){
+'use strict';
 
-        function renderCategories() {
-            const container = document.getElementById('categoryFilters');
-            const categories = ['ALL', ...new Set(defaultProducts.map(p => p.category))];
-            
-            container.innerHTML = categories.map(cat => `
-                <button onclick="setCategory('${cat}')" class="cat-btn px-3 py-1.5 rounded-full font-medium whitespace-nowrap transition ${currentCategory === cat ? 'bg-blue-600 text-white shadow-sm' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}">
-                    ${cat === 'ALL' ? 'Tất cả' : cat}
-                </button>
-            `).join('');
-        }
+/* ================= Tiện ích ================= */
+var $ = function(s){ return document.querySelector(s); };
+var KEY = 'bgpana.data.v1', PKEY = 'bgpana.prefs.v1';
+var ST = {
+  in:   { label:'Còn hàng',         short:'Còn hàng' },
+  out:  { label:'Hết hàng',         short:'Hết hàng' },
+  stop: { label:'Ngưng kinh doanh', short:'Ngưng KD' }
+};
+var ORDER = ['in','out','stop'];
 
-        function setCategory(cat) {
-            currentCategory = cat;
-            renderCategories();
-            filterProducts();
-        }
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function fmt(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.'); }
+function norm(s){ return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d'); }
+function num(v){ if(v===null||v===undefined||v==='') return null; var n=Number(v); return isFinite(n)?Math.round(n):null; }
+function parseMoney(s){ var d=String(s).replace(/\D/g,''); return d===''?null:Number(d); }
+function uid(){ return 'p'+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+function safeJson(o){ return JSON.stringify(o).replace(/</g,'\\u003c'); }
 
-        function filterProducts() {
-            const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
-            const statusFilter = document.getElementById('statusFilter').value;
+/* ================= Lưu trữ ================= */
+var storageOk = true;
+try{ localStorage.setItem('__t','1'); localStorage.removeItem('__t'); }catch(e){ storageOk=false; }
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ storageOk=false; return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); return true; }catch(e){ storageOk=false; return false; } }
 
-            const filtered = products.filter(p => {
-                const matchCat = currentCategory === 'ALL' || p.category === currentCategory;
-                const matchKey = p.name.toLowerCase().includes(keyword) || p.category.toLowerCase().includes(keyword);
-                const matchStatus = statusFilter === 'ALL' || p.status === statusFilter;
-                return matchCat && matchKey && matchStatus;
-            });
+function sanitize(d){
+  if(!d || !Array.isArray(d.products)) throw new Error('Dữ liệu không đúng định dạng');
+  var products = d.products.filter(function(p){ return p && p.name; }).map(function(p){
+    return { id:String(p.id||uid()), cat:String(p.cat||'Khác'), name:String(p.name).trim(),
+      list:num(p.list), cost:num(p.cost), price:num(p.price),
+      status: ST[p.status] ? p.status : 'in', note:String(p.note||'') };
+  });
+  return { version:1, updatedAt: d.updatedAt || new Date().toISOString(), products:products };
+}
+var seed = sanitize(JSON.parse($('#seed').textContent));
+var orig = sanitize(JSON.parse($('#orig').textContent));
+var state = seed;
+(function(){
+  var raw = lsGet(KEY);
+  if(!raw) return;
+  try{
+    var loc = sanitize(JSON.parse(raw));
+    if(loc.products.length && String(loc.updatedAt) >= String(seed.updatedAt)) state = loc;
+  }catch(e){}
+})();
+var warnedStorage = false;
+function persist(){
+  state.updatedAt = new Date().toISOString();
+  if(!lsSet(KEY, JSON.stringify(state)) && !warnedStorage){
+    warnedStorage = true;
+    toast('Chưa lưu được vào máy. Hãy dùng "Lưu bản HTML đã cập nhật" trong menu.');
+  }
+}
+var prefs = { hideCost:false };
+try{ var pr = JSON.parse(lsGet(PKEY)||'{}'); prefs.hideCost = !!pr.hideCost; }catch(e){}
+function savePrefs(){ lsSet(PKEY, JSON.stringify(prefs)); }
 
-            const listEl = document.getElementById('productList');
-            document.getElementById('resultCount').innerText = `Hiển thị ${filtered.length} sản phẩm`;
+/* ================= Bộ lọc & hiển thị ================= */
+var view = { q:'', cat:'all', st:'all' };
+var flashId = null;
 
-            if (filtered.length === 0) {
-                listEl.innerHTML = `
-                    <div class="text-center py-12 bg-white rounded-2xl border border-slate-200 p-6">
-                        <p class="text-slate-400 text-sm">Không tìm thấy sản phẩm phù hợp.</p>
-                    </div>
-                `;
-                return;
-            }
+function cats(){
+  var out=[]; state.products.forEach(function(p){ if(out.indexOf(p.cat)<0) out.push(p.cat); }); return out;
+}
+function tokens(){ return norm(view.q).split(/\s+/).filter(Boolean); }
+function hay(p){ return norm([p.name,p.cat,p.note,p.price==null?'':p.price,p.price==null?'':fmt(p.price)].join(' ')); }
+function baseList(){
+  var t = tokens();
+  return state.products.filter(function(p){
+    if(view.cat!=='all' && p.cat!==view.cat) return false;
+    if(!t.length) return true;
+    var h = hay(p); return t.every(function(x){ return h.indexOf(x)>=0; });
+  });
+}
 
-            listEl.innerHTML = filtered.map(p => {
-                let statusBadge = '';
-                if (p.status === 'in_stock') statusBadge = '<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-emerald-50 text-emerald-700">🟢 Còn hàng</span>';
-                else if (p.status === 'out_of_stock') statusBadge = '<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-rose-50 text-rose-700">🔴 Hết hàng</span>';
-                else statusBadge = '<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-600">⚫ Ngưng KD</span>';
+function renderCats(){
+  var list = cats();
+  if(view.cat!=='all' && list.indexOf(view.cat)<0) view.cat='all';
+  $('#cats').innerHTML =
+    '<button class="chip" data-cat="all" aria-pressed="'+(view.cat==='all')+'">Tất cả</button>' +
+    list.map(function(c){ return '<button class="chip" data-cat="'+esc(c)+'" aria-pressed="'+(view.cat===c)+'">'+esc(c)+'</button>'; }).join('');
+}
+function renderStats(){
+  var b = baseList(), cnt = {in:0,out:0,stop:0};
+  b.forEach(function(p){ cnt[p.status]++; });
+  $('#stats').innerHTML =
+    '<button class="chip" data-st="all" aria-pressed="'+(view.st==='all')+'">Tất cả <span class="n">'+b.length+'</span></button>' +
+    ORDER.map(function(k){
+      return '<button class="chip" data-st="'+k+'" aria-pressed="'+(view.st===k)+'"><i class="d-'+k+'"></i>'+ST[k].short+' <span class="n">'+cnt[k]+'</span></button>';
+    }).join('');
+}
+function rowHtml(p, showCat){
+  var meta = [];
+  if(showCat) meta.push(esc(p.cat));
+  if(p.note) meta.push('<em>'+esc(p.note)+'</em>');
+  return '<div class="row s-'+p.status+(p.id===flashId?' flash':'')+'" data-id="'+esc(p.id)+'">'+
+    '<div class="r1"><h3 class="name">'+esc(p.name)+'</h3>'+
+      '<button class="badge b-'+p.status+'" data-badge aria-label="Tình trạng: '+ST[p.status].label+'. Bấm để đổi"><i></i>'+ST[p.status].short+'</button></div>'+
+    (meta.length?'<div class="meta">'+meta.join(' &nbsp;')+'</div>':'')+
+    '<div class="r2">'+
+      (p.price==null?'<div class="price none">Chưa có giá</div>':'<div class="price">'+fmt(p.price)+'<u>đ</u></div>')+
+      (p.cost==null?'':'<div class="cost">Nhập '+fmt(p.cost)+'đ</div>')+
+    '</div></div>';
+}
+function renderList(){
+  var b = baseList().filter(function(p){ return view.st==='all' || p.status===view.st; });
+  var filtering = view.q.trim()!=='' || view.cat!=='all' || view.st!=='all';
+  $('#info').textContent = filtering ? ('Hiển thị '+b.length+' trong '+state.products.length+' sản phẩm') : (state.products.length+' sản phẩm');
+  var el = $('#list');
+  if(!b.length){
+    var q = view.q.trim();
+    el.innerHTML = '<div class="empty"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5M8.5 11h5"/></svg>'+
+      '<b>Không có sản phẩm phù hợp</b>Thử bỏ bớt bộ lọc hoặc gõ từ khoá khác.'+
+      (q?'<button class="btn" data-add-q>Thêm "'+esc(q)+'" làm sản phẩm mới</button>':'')+'</div>';
+    return;
+  }
+  var showCat = view.cat==='all' && view.q.trim()!=='';
+  if(view.cat==='all' && !view.q.trim()){
+    var groups = [], map = {};
+    b.forEach(function(p){ if(!map[p.cat]){ map[p.cat]=[]; groups.push(p.cat); } map[p.cat].push(p); });
+    el.innerHTML = groups.map(function(g){
+      return '<section class="group"><h2>'+esc(g)+'<span>'+map[g].length+'</span></h2><div class="rows">'+
+        map[g].map(function(p){ return rowHtml(p,false); }).join('')+'</div></section>';
+    }).join('');
+  } else {
+    el.innerHTML = '<div class="rows" style="margin-top:12px">'+b.map(function(p){ return rowHtml(p,showCat); }).join('')+'</div>';
+  }
+}
+function renderAll(){ renderCats(); renderStats(); renderList(); applyPrefs(); }
+function applyPrefs(){
+  document.body.classList.toggle('nocost', prefs.hideCost);
+  $('#btnEye').setAttribute('aria-pressed', String(prefs.hideCost));
+}
+function keepScrollNearTop(){
+  var h = document.querySelector('.top').offsetHeight;
+  if(window.scrollY > h) window.scrollTo(0, h);
+}
 
-                return `
-                    <div class="bg-white rounded-2xl p-4 border border-slate-200/80 ios-shadow flex flex-col justify-between gap-2 relative">
-                        <div class="flex justify-between items-start gap-2">
-                            <div>
-                                <span class="text-[10px] font-semibold text-blue-600 uppercase tracking-wide">${p.category}</span>
-                                <h3 class="font-semibold text-slate-900 text-sm mt-0.5 leading-snug">${p.name}</h3>
-                            </div>
-                            <div>${statusBadge}</div>
-                        </div>
-                        
-                        <div class="flex items-end justify-between mt-1 pt-2 border-t border-slate-100">
-                            <div>
-                                <div class="text-[10px] text-slate-400 font-medium">GIÁ BÁN LẺ ĐỀ XUẤT</div>
-                                <div class="text-lg font-bold text-blue-600 tracking-tight">${formatMoney(p.retailPrice)}</div>
-                                <div class="text-xs text-slate-400 font-normal">Giá nhập: <span class="text-slate-500 font-medium">${formatMoney(p.importPrice)}</span></div>
-                            </div>
-                            <button onclick="openEditModal(${p.id})" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-xl text-xs font-semibold transition active:scale-95">
-                                ✏️ Sửa giá
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
+/* ================= Thông báo nhỏ ================= */
+var toastTimer;
+function toast(msg, action){
+  var t = $('#toast');
+  t.innerHTML = '<span>'+esc(msg)+'</span>'+(action?'<button>'+esc(action.text)+'</button>':'');
+  if(action){ t.querySelector('button').onclick = function(){ hideToast(); action.fn(); }; }
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(hideToast, action ? 5000 : 2600);
+}
+function hideToast(){ $('#toast').classList.remove('show'); }
 
-        // Tìm kiếm realtime
-        document.getElementById('searchInput').addEventListener('input', filterProducts);
+/* ================= Bảng trượt ================= */
+var sheetDirty = false;
+function openSheet(html){
+  var s = $('#sheet'), o = $('#overlay');
+  hideToast();
+  s.innerHTML = html;
+  o.hidden = false; s.hidden = false;
+  s.classList.remove('nudge');
+  void s.offsetWidth;
+  o.classList.add('open'); s.classList.add('open');
+  document.documentElement.classList.add('lock');
+  fitSheet();
+}
+function closeSheet(){
+  var s = $('#sheet'), o = $('#overlay');
+  s.classList.remove('open'); o.classList.remove('open');
+  document.documentElement.classList.remove('lock');
+  sheetDirty = false;
+  setTimeout(function(){
+    if(!s.classList.contains('open')){ s.hidden = true; o.hidden = true; s.innerHTML=''; s.style.bottom=''; s.style.maxHeight=''; }
+  }, 300);
+}
+function fitSheet(){
+  var s = $('#sheet'), vv = window.visualViewport;
+  if(!vv || s.hidden) return;
+  var kb = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+  if(kb > 40){ s.style.bottom = kb+'px'; s.style.maxHeight = Math.max(260, vv.height-20)+'px'; }
+  else { s.style.bottom=''; s.style.maxHeight=''; }
+}
+if(window.visualViewport){
+  window.visualViewport.addEventListener('resize', fitSheet);
+  window.visualViewport.addEventListener('scroll', fitSheet);
+}
+var X_SVG = '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+function head(title, sub){
+  return '<div class="grab"></div><div class="sheet-head"><div><h2>'+esc(title)+'</h2>'+(sub?'<p class="sub">'+esc(sub)+'</p>':'')+'</div>'+
+    '<button class="x" data-close aria-label="Đóng">'+X_SVG+'</button></div>';
+}
+$('#overlay').addEventListener('click', function(){
+  if(sheetDirty){ var s=$('#sheet'); s.classList.remove('nudge'); void s.offsetWidth; s.classList.add('nudge'); }
+  else closeSheet();
+});
+$('#sheet').addEventListener('click', function(e){ if(e.target.closest('[data-close]')) closeSheet(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('#sheet').hidden) closeSheet(); });
 
-        // Modal chỉnh sửa
-        function openEditModal(id) {
-            const p = products.find(item => item.id === id);
-            if (!p) return;
+/* ----- Đổi nhanh tình trạng ----- */
+function openStatus(id){
+  var p = state.products.find(function(x){ return x.id===id; }); if(!p) return;
+  openSheet(head(p.name, 'Chọn tình trạng hàng') +
+    '<div class="sheet-body"><div class="pick" role="radiogroup">'+
+    ORDER.map(function(k){
+      return '<button class="k-'+k+'" role="radio" data-set="'+k+'" aria-checked="'+(p.status===k)+'"><i class="d-'+k+'"></i><span>'+ST[k].label+'</span>'+
+        (p.status===k?'<svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>':'')+'</button>';
+    }).join('')+'</div></div><div style="height:calc(14px + env(safe-area-inset-bottom))"></div>');
+  $('#sheet').querySelector('.pick').onclick = function(e){
+    var b = e.target.closest('[data-set]'); if(!b) return;
+    var k = b.getAttribute('data-set');
+    if(k!==p.status){ p.status = k; persist(); renderStats(); renderList(); toast(p.name+': '+ST[k].label); }
+    closeSheet();
+  };
+}
 
-            document.getElementById('editProductId').value = p.id;
-            document.getElementById('editName').value = p.name;
-            document.getElementById('editRetailPrice').value = p.retailPrice;
-            document.getElementById('editImportPrice').value = p.importPrice;
-            document.getElementById('editStatus').value = p.status || 'in_stock';
+/* ----- Thêm / sửa sản phẩm ----- */
+function openEdit(id, preset){
+  var isNew = !id, p;
+  if(isNew){
+    var cl = cats();
+    p = { id:null, cat:(view.cat!=='all'?view.cat:(cl[0]||'Khác')), name:(preset&&preset.name)||'', list:null, cost:null, price:null, status:'in', note:'' };
+  } else {
+    p = state.products.find(function(x){ return x.id===id; }); if(!p) return;
+  }
+  var status = p.status; sheetDirty = false;
+  var catOpts = cats().map(function(c){ return '<option value="'+esc(c)+'"'+(c===p.cat?' selected':'')+'>'+esc(c)+'</option>'; }).join('');
+  openSheet(head(isNew?'Thêm sản phẩm':'Sửa sản phẩm') +
+    '<div class="sheet-body">'+
+      '<label class="fld"><span>Tên sản phẩm</span><input class="inp" id="f-name" value="'+esc(p.name)+'" autocomplete="off" autocapitalize="sentences" enterkeyhint="next"></label>'+
+      '<div class="fld"><span>Tình trạng</span><div class="seg" id="f-status" role="radiogroup">'+
+        ORDER.map(function(k){ return '<button type="button" class="k-'+k+'" role="radio" data-k="'+k+'" aria-checked="'+(status===k)+'"><i class="d-'+k+'"></i>'+ST[k].label+'</button>'; }).join('')+
+      '</div></div>'+
+      '<label class="fld"><span>Giá bán lẻ đề xuất (đ)</span><input class="inp big money" id="f-price" inputmode="numeric" autocomplete="off" placeholder="0" value="'+(p.price==null?'':fmt(p.price))+'"></label>'+
+      '<div class="grid2">'+
+        '<label class="fld"><span>Giá nhập có VAT (đ)</span><input class="inp money" id="f-cost" inputmode="numeric" autocomplete="off" placeholder="0" value="'+(p.cost==null?'':fmt(p.cost))+'"></label>'+
+        '<label class="fld"><span>Đơn giá niêm yết (đ)</span><input class="inp money" id="f-list" inputmode="numeric" autocomplete="off" placeholder="0" value="'+(p.list==null?'':fmt(p.list))+'"></label>'+
+      '</div>'+
+      '<div class="hint" id="f-profit"></div><div class="warn" id="f-warn" hidden></div>'+
+      '<label class="fld"><span>Nhóm hàng</span><select class="inp" id="f-cat">'+catOpts+'<option value="__new">Tạo nhóm mới…</option></select></label>'+
+      '<input class="inp" id="f-newcat" placeholder="Tên nhóm mới" style="margin-top:10px" hidden>'+
+      '<label class="fld"><span>Ghi chú (không bắt buộc)</span><input class="inp" id="f-note" value="'+esc(p.note)+'" placeholder="Ví dụ: hàng về ngày 20/10" autocomplete="off"></label>'+
+      '<div class="err" id="f-err" role="alert" hidden></div>'+
+      (isNew?'':'<button class="btn danger del" id="f-del" type="button">Xoá sản phẩm</button>')+
+    '</div>'+
+    '<div class="sheet-foot"><button class="btn" id="f-save" type="button">Lưu thay đổi</button></div>');
 
-            document.getElementById('editModal').classList.remove('hidden');
-        }
+  var S = $('#sheet'), f = function(n){ return S.querySelector('#f-'+n); };
+  function profit(){
+    var pr = parseMoney(f('price').value), co = parseMoney(f('cost').value), li = parseMoney(f('list').value);
+    var h = f('profit'), w = f('warn');
+    if(pr!=null && co!=null && co>0){
+      var d = pr-co, pc = (d/co*100).toFixed(1).replace('.',',');
+      h.innerHTML = 'Lời ước tính: <b class="'+(d<0?'neg':'')+'">'+(d<0?'−':'+')+fmt(Math.abs(d))+'đ</b> (khoảng '+pc+'% trên giá nhập)';
+    } else h.textContent = '';
+    if(li!=null && co!=null && li<co){ w.hidden=false; w.textContent='Đơn giá niêm yết đang thấp hơn giá nhập. Hãy kiểm tra lại số liệu.'; }
+    else w.hidden=true;
+  }
+  S.querySelectorAll('.money').forEach(function(inp){
+    inp.addEventListener('input', function(){
+      var d = inp.value.replace(/\D/g,''); inp.value = d ? fmt(Number(d)) : '';
+      sheetDirty = true; profit();
+    });
+  });
+  ['name','note','newcat'].forEach(function(n){ f(n).addEventListener('input', function(){ sheetDirty=true; }); });
+  f('cat').addEventListener('change', function(){
+    sheetDirty = true;
+    var isN = f('cat').value==='__new'; f('newcat').hidden = !isN; if(isN) f('newcat').focus();
+  });
+  f('status').addEventListener('click', function(e){
+    var b = e.target.closest('[data-k]'); if(!b) return;
+    status = b.getAttribute('data-k'); sheetDirty = true;
+    f('status').querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-checked', String(x===b)); });
+  });
+  S.querySelector('.sheet-body').addEventListener('focusin', function(e){
+    var t = e.target; if(t.tagName==='INPUT'||t.tagName==='SELECT') setTimeout(function(){ try{ t.scrollIntoView({block:'center',behavior:'smooth'}); }catch(_){} }, 320);
+  });
+  profit();
 
-        function closeEditModal() {
-            document.getElementById('editModal').classList.add('hidden');
-        }
+  function fail(msg, el){ var er=f('err'); er.hidden=false; er.textContent=msg; if(el) el.focus(); }
+  f('save').addEventListener('click', function(){
+    var name = f('name').value.trim(), price = parseMoney(f('price').value);
+    var cat = f('cat').value==='__new' ? f('newcat').value.trim() : f('cat').value;
+    if(!name) return fail('Nhập tên sản phẩm.', f('name'));
+    if(price==null) return fail('Nhập giá bán lẻ đề xuất.', f('price'));
+    if(!cat) return fail('Nhập tên nhóm mới hoặc chọn một nhóm có sẵn.', f('newcat'));
+    var data = { name:name, price:price, cost:parseMoney(f('cost').value), list:parseMoney(f('list').value),
+      status:status, note:f('note').value.trim(), cat:cat };
+    var target;
+    if(isNew){ target = { id:uid() }; }
+    else { target = p; }
+    var catChanged = isNew || target.cat !== cat;
+    Object.keys(data).forEach(function(k){ target[k] = data[k]; });
+    if(catChanged){
+      if(!isNew){ state.products.splice(state.products.indexOf(target),1); }
+      var last = -1; state.products.forEach(function(x,i){ if(x.cat===cat) last=i; });
+      if(last>=0) state.products.splice(last+1,0,target); else state.products.push(target);
+    }
+    persist();
+    if(isNew){ view.q=''; $('#q').value=''; $('#qClear').hidden=true; view.st='all'; view.cat=cat; flashId=target.id; }
+    closeSheet(); renderAll();
+    if(isNew){
+      var row = document.querySelector('[data-id="'+target.id+'"]');
+      if(row) setTimeout(function(){ row.scrollIntoView({block:'center',behavior:'smooth'}); }, 80);
+      setTimeout(function(){ flashId=null; }, 1800);
+    }
+    toast(isNew ? 'Đã thêm sản phẩm' : 'Đã lưu thay đổi');
+  });
+  var del = f('del');
+  if(del){
+    var armTimer;
+    del.addEventListener('click', function(){
+      if(!del.classList.contains('armed')){
+        del.classList.add('armed'); del.textContent='Bấm lần nữa để xoá';
+        armTimer = setTimeout(function(){ del.classList.remove('armed'); del.textContent='Xoá sản phẩm'; }, 3000);
+        return;
+      }
+      clearTimeout(armTimer);
+      var idx = state.products.indexOf(p), removed = p;
+      state.products.splice(idx,1); persist(); closeSheet(); renderAll();
+      toast('Đã xoá '+removed.name, { text:'Hoàn tác', fn:function(){
+        state.products.splice(Math.min(idx,state.products.length),0,removed); persist(); renderAll(); toast('Đã khôi phục sản phẩm');
+      }});
+    });
+  }
+  if(isNew) setTimeout(function(){ f('name').focus(); }, 350);
+}
 
-        function saveProductEdit() {
-            const id = parseInt(document.getElementById('editProductId').value);
-            const newRetail = parseFloat(document.getElementById('editRetailPrice').value);
-            const newImport = parseFloat(document.getElementById('editImportPrice').value);
-            const newStatus = document.getElementById('editStatus').value;
+/* ================= Xuất / nhập dữ liệu ================= */
+function stamp(){ var d=new Date(); function z(n){return String(n).padStart(2,'0');} return d.getFullYear()+z(d.getMonth()+1)+z(d.getDate())+'_'+z(d.getHours())+z(d.getMinutes()); }
+function saveFile(name, mime, text){
+  var blob = new Blob([text], {type:mime});
+  var file = null;
+  try{ file = new File([blob], name, {type:mime}); }catch(e){}
+  if(file && navigator.canShare && navigator.canShare({files:[file]}) && navigator.share){
+    return navigator.share({files:[file], title:name}).then(function(){ return 'shared'; }, function(err){
+      if(err && err.name==='AbortError') return 'cancel';
+      return download();
+    });
+  }
+  return Promise.resolve(download());
+  function download(){
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 5000);
+    return 'download';
+  }
+}
+function buildHtml(){
+  var c = document.documentElement.cloneNode(true);
+  c.className=''; c.removeAttribute('style');
+  c.querySelector('body').className=''; c.querySelector('body').removeAttribute('style');
+  c.querySelectorAll('[data-dyn]').forEach(function(e){ e.innerHTML=''; });
+  c.querySelector('#seed').textContent = safeJson(state);
+  var s = c.querySelector('#sheet'); s.hidden=true; s.className='sheet'; s.removeAttribute('style');
+  var o = c.querySelector('#overlay'); o.hidden=true; o.className='overlay';
+  c.querySelector('#toast').className='toast';
+  c.querySelector('#btnEye').setAttribute('aria-pressed','false');
+  c.querySelector('#qClear').hidden = true;
+  return '<!DOCTYPE html>\n' + c.outerHTML;
+}
+function exportHtml(){
+  var html = buildHtml();
+  saveFile('Bang_Gia_Panasonic_'+stamp()+'.html','text/html',html).then(function(r){
+    if(r==='download') toast('Đã tải file bảng giá mới. Mở file này để dùng bản cập nhật.');
+    if(r==='shared') toast('Đã xuất bản HTML đã cập nhật');
+  });
+}
+function exportJson(){
+  saveFile('Sao_luu_gia_Panasonic_'+stamp()+'.json','application/json',JSON.stringify(state,null,1)).then(function(r){
+    if(r==='download') toast('Đã tải file sao lưu');
+    if(r==='shared') toast('Đã xuất file sao lưu');
+  });
+}
+$('#file').addEventListener('change', function(){
+  var f = this.files && this.files[0]; this.value=''; if(!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try{
+      var d = sanitize(JSON.parse(rd.result));
+      if(!d.products.length) throw new Error('empty');
+      state = d; persist(); view={q:'',cat:'all',st:'all'}; $('#q').value=''; $('#qClear').hidden=true;
+      closeSheet(); renderAll(); window.scrollTo(0,0);
+      toast('Đã khôi phục '+d.products.length+' sản phẩm');
+    }catch(e){ toast('File không hợp lệ. Hãy chọn file sao lưu .json của ứng dụng này.'); }
+  };
+  rd.readAsText(f);
+});
 
-            const p = products.find(item => item.id === id);
-            if (p) {
-                p.retailPrice = isNaN(newRetail) ? p.retailPrice : newRetail;
-                p.importPrice = isNaN(newImport) ? p.importPrice : newImport;
-                p.status = newStatus;
-                saveData();
-                filterProducts();
-                closeEditModal();
-            }
-        }
+/* ================= Menu ================= */
+var IC = {
+  plus:'<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>',
+  save:'<svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>',
+  json:'<svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>',
+  up:'<svg viewBox="0 0 24 24"><path d="M12 21V9M7 14l5-5 5 5M4 4h16"/></svg>',
+  reset:'<svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 109-9 9 9 0 00-7 3.4M3 4v4h4"/></svg>'
+};
+function openMenu(){
+  var when = new Date(state.updatedAt).toLocaleString('vi-VN');
+  openSheet(head('Menu') + '<div class="sheet-body">'+
+    '<div class="menu">'+
+      '<button data-act="add">'+IC.plus+'<span><b>Thêm sản phẩm mới</b></span></button>'+
+      '<button data-act="html">'+IC.save+'<span><b>Lưu bản HTML đã cập nhật</b><small>Giá mới nằm sẵn trong file, mở ở đâu cũng đúng</small></span></button>'+
+      '<button data-act="json">'+IC.json+'<span><b>Sao lưu dữ liệu</b><small>Tải file .json để cất giữ</small></span></button>'+
+      '<button data-act="import">'+IC.up+'<span><b>Khôi phục từ file sao lưu</b><small>Chọn file .json đã sao lưu trước đó</small></span></button>'+
+    '</div>'+
+    '<div class="menu"><button class="red" data-act="reset">'+IC.reset+'<span><b>Đặt lại về bảng giá gốc</b><small>Xoá mọi chỉnh sửa, quay về file Excel tháng 10/2026</small></span></button></div>'+
+    '<p class="foot-note">Chỉnh sửa gần nhất: '+esc(when)+'</p>'+
+    (storageOk ? '<p class="foot-note">Dữ liệu tự lưu trong trình duyệt trên máy này.</p>'
+               : '<p class="foot-note bad">Trình duyệt này không cho lưu dữ liệu. Sau khi sửa giá, hãy bấm "Lưu bản HTML đã cập nhật".</p>')+
+    '</div><div style="height:calc(14px + env(safe-area-inset-bottom))"></div>');
+  $('#sheet').querySelector('.menu').parentNode.onclick = function(e){
+    var b = e.target.closest('[data-act]'); if(!b) return;
+    var a = b.getAttribute('data-act');
+    if(a==='add'){ closeSheet(); setTimeout(function(){ openEdit(null); }, 320); }
+    else if(a==='html') exportHtml();
+    else if(a==='json') exportJson();
+    else if(a==='import') $('#file').click();
+    else if(a==='reset') openReset();
+  };
+}
+function openReset(){
+  openSheet(head('Đặt lại bảng giá?') + '<div class="sheet-body confirm">'+
+    '<p>Mọi giá, tình trạng hàng và sản phẩm bạn đã sửa hoặc thêm sẽ bị xoá. Bảng giá quay về đúng file Excel tháng 10/2026.</p>'+
+    '<p style="color:var(--muted);font-size:15px">Nên sao lưu dữ liệu trước nếu bạn muốn giữ lại.</p></div>'+
+    '<div class="sheet-foot"><button class="btn danger" id="doReset">Đặt lại bảng giá</button><button class="btn ghost" data-close>Giữ nguyên</button></div>');
+  $('#doReset').onclick = function(){
+    state = JSON.parse(JSON.stringify(orig)); state.updatedAt = new Date().toISOString();
+    persist(); view={q:'',cat:'all',st:'all'}; $('#q').value=''; $('#qClear').hidden=true;
+    closeSheet(); renderAll(); window.scrollTo(0,0); toast('Đã đặt lại về bảng giá gốc');
+  };
+}
 
-        // Modal dữ liệu
-        function openExportModal() {
-            document.getElementById('dataModal').classList.remove('hidden');
-        }
+/* ================= Sự kiện chính ================= */
+var qEl = $('#q');
+qEl.addEventListener('input', function(){
+  view.q = qEl.value; $('#qClear').hidden = !qEl.value;
+  renderStats(); renderList(); keepScrollNearTop();
+});
+qEl.addEventListener('keydown', function(e){ if(e.key==='Enter') qEl.blur(); });
+$('#qClear').addEventListener('click', function(){
+  qEl.value=''; view.q=''; this.hidden=true; renderStats(); renderList(); qEl.focus();
+});
+$('#cats').addEventListener('click', function(e){
+  var b = e.target.closest('[data-cat]'); if(!b) return;
+  view.cat = b.getAttribute('data-cat'); renderCats(); renderStats(); renderList(); keepScrollNearTop();
+  var on = $('#cats').querySelector('[aria-pressed=true]'); if(on && on.scrollIntoView){ on.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'}); }
+});
+$('#stats').addEventListener('click', function(e){
+  var b = e.target.closest('[data-st]'); if(!b) return;
+  view.st = b.getAttribute('data-st'); renderStats(); renderList(); keepScrollNearTop();
+});
+$('#list').addEventListener('click', function(e){
+  var add = e.target.closest('[data-add-q]');
+  if(add){ openEdit(null,{name:view.q.trim()}); return; }
+  var row = e.target.closest('[data-id]'); if(!row) return;
+  var id = row.getAttribute('data-id');
+  if(e.target.closest('[data-badge]')) openStatus(id); else openEdit(id);
+});
+$('#btnEye').addEventListener('click', function(){
+  prefs.hideCost = !prefs.hideCost; savePrefs(); applyPrefs();
+  toast(prefs.hideCost ? 'Đã ẩn giá nhập, khách nhìn sẽ không thấy' : 'Đã hiện giá nhập');
+});
+$('#btnMenu').addEventListener('click', openMenu);
+$('#fab').addEventListener('click', function(){ openEdit(null); });
+var lastY = 0;
+window.addEventListener('scroll', function(){
+  var y = window.scrollY, f = $('#fab');
+  if(y > lastY + 6 && y > 200) f.classList.add('away');
+  else if(y < lastY - 6 || y <= 200) f.classList.remove('away');
+  lastY = y;
+}, {passive:true});
 
-        function closeExportModal() {
-            document.getElementById('dataModal').classList.add('hidden');
-        }
-
-        function resetToDefaultData() {
-            if (confirm("Bạn có chắc chắn muốn khôi phục lại toàn bộ giá gốc ban đầu?")) {
-                products = JSON.parse(JSON.stringify(defaultProducts));
-                saveData();
-                filterProducts();
-                closeExportModal();
-            }
-        }
-
-        // Khởi chạy khi tải trang
-        window.onload = initData;
-    </script>
+renderAll();
+})();
+</script>
 </body>
 </html>
